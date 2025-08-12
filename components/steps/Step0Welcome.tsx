@@ -5,7 +5,7 @@ import TrendingFlatIcon from "@mui/icons-material/TrendingFlat";
 import BottomNavigationBar from "../ui/BottomNavigationBar";
 import SchoolIcon from "@mui/icons-material/School"; // Placeholder for 'brain' icon
 
-let logo = "../../icons/logo_actual_square.png";
+let logo = "..//icon/logo_actual_square.png";
 
 interface Step0WelcomeProps {
   onNext: () => void;

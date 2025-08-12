@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Box, Typography, Fade, keyframes } from "@mui/material";
 
-let logo = "../icons/logo_actual_square.png";
+let logo = "/icons/logo_actual_square.png";
 
 interface SplashScreenProps {
   onFinish: () => void;

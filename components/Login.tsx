@@ -23,7 +23,7 @@ import { COLORS } from "../constants";
 interface LoginProps {
   onLoginSuccess: () => void;
 }
-let AppLogo = "../icons/logo_actual_square.png";
+let AppLogo = "/icons/logo_actual_square.png";
 
 const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
   const [username, setUsername] = useState("");
