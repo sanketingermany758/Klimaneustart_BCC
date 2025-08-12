@@ -12,7 +12,7 @@ interface Step0WelcomeProps {
 }
 
 const Step0Welcome: React.FC<Step0WelcomeProps> = ({ onNext }) => {
-  const handleTabChange = (tabName: "reports" | "history") => {
+  const handleTabChange = (tabName: "dialogue" | "dashboard") => {
     console.log("Tab changed to:", tabName);
   };
 
