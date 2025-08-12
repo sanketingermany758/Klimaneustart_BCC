@@ -66,6 +66,12 @@ export interface ConversationData {
   numPeople: number;
   duration: number; // in minutes
   location?: string;
+
+  // Contact info
+  firstName?: string;
+  lastName?: string;
+  phone?: string;
+  participantType?: "single" | "family" | "couple";
 }
 
 export interface ContactInfo {
