@@ -4,8 +4,8 @@ import { COLORS } from "../../constants";
 // import RestoreIcon from '@mui/icons-material/Restore';
 // import PieChartIcon from '@mui/icons-material/PieChart';
 
-let editNotes = "..//icon/note_in_folder_icon.png";
-let piechartIcon = "..//icon/pie_chart_icon.png";
+let editNotes = "/icons/note_in_folder_icon.png";
+let piechartIcon = "/icons/pie_chart_icon.png";
 
 interface BottomNavigationBarProps {
   currentView: "dialogue" | "dashboard";
