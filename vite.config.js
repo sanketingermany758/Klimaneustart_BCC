@@ -24,11 +24,8 @@ export default defineConfig(({ mode }) => {
         },
       },
       allowedHosts: [
-        "*.ngrok-free.app",
-        "6521c162de00.ngrok-free.app",
-        "58d66f155f06.ngrok-free.app",
         "localhost:5173",
-        "785ec7322ad9.ngrok-free.app"
+        "klimaneustart-bcc.onrender.com"
       ]
     },
   };

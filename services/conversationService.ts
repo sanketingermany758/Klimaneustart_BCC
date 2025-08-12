@@ -1,4 +1,3 @@
-
 // import { ConversationData } from '../types';
 
 /**
@@ -25,40 +24,46 @@
 //     });
 // };
 
-
-import { ConversationData } from '../types';
+import { ConversationData } from "../types";
 
 // Prefer absolute backend URL only if provided; otherwise use same-origin '/api' path
-const API_BASE_URL: string = (import.meta as any).env?.VITE_API_BASE_URL || '';
+const API_BASE_URL: string = (import.meta as any).env?.VITE_API_BASE_URL || "";
 
 export const saveConversation = async (
-  data: ConversationData & { uuid?: string; sendCopy?: boolean; firstName?: string; lastName?: string; phone?: string }
+  data: ConversationData & {
+    uuid?: string;
+    sendCopy?: boolean;
+    firstName?: string;
+    lastName?: string;
+    phone?: string;
+  }
 ): Promise<{ success: boolean; id: string }> => {
   try {
+    console.log("Send save conversation request to: ", API_BASE_URL);
     const url = API_BASE_URL
       ? `${API_BASE_URL}/api/v1/conversations`
       : `/api/v1/conversations`;
     const response = await fetch(url, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
     });
 
     if (!response.ok) {
-      let errorMsg = 'Failed to save conversation';
+      let errorMsg = "Failed to save conversation";
       try {
         const error = await response.json();
         errorMsg = error?.error || errorMsg;
-      } catch { }
+      } catch {}
       throw new Error(errorMsg);
     }
 
     const result = await response.json();
     return { success: true, id: result.dialogue_id || result.id };
   } catch (error) {
-    console.error('Network or API error:', error);
+    console.error("Network or API error:", error);
     throw error;
   }
 };
