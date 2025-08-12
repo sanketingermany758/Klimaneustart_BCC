@@ -31,6 +31,7 @@ const conversationSchema = Joi.object({
     firstName: Joi.string().allow(''),
     lastName: Joi.string().allow(''),
     phone: Joi.string().allow(''),
+    participantType: Joi.string().allow(''),
     sendCopy: Joi.boolean().optional()
 });
 

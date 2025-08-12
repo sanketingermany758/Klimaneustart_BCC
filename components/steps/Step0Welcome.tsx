@@ -73,7 +73,10 @@ const Step0Welcome: React.FC<Step0WelcomeProps> = ({ onNext }) => {
         Starte den Dialog
       </Button>
 
-      <BottomNavigationBar onTabChange={handleTabChange} />
+      <BottomNavigationBar
+        currentView={"dialogue"}
+        onTabChange={handleTabChange}
+      />
     </Box>
   );
 };
