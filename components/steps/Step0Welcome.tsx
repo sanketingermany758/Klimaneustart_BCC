@@ -45,7 +45,7 @@ const Step0Welcome: React.FC<Step0WelcomeProps> = ({ onNext }) => {
       />
 
       <Typography variant="h3" component="h1" gutterBottom>
-        Berliner Gespräche Klimaneustart
+        Sag doch mal,Berlin
       </Typography>
 
       <Typography
