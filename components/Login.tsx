@@ -145,16 +145,49 @@ const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
             <Typography
               component="h1"
               variant="h1"
-              sx={{ ml: 1, fontWeight: "bold", color: "error.main" }}
+              sx={{
+                ml: 1,
+                fontWeight: "bold",
+                color: "error.main",
+                textAlign: "center",
+              }}
             >
               Klimaneustart Berlin
             </Typography>
+
+            <Typography
+              variant="h5"
+              color="text.secondary"
+              sx={{ mt: 2, mb: 2 }}
+            >
+              Sag doch mal,Berlin
+            </Typography>
+            <Box
+              sx={{
+                height: "2px",
+                width: "80%",
+                backgroundColor: COLORS.green3,
+                opacity: 0.5,
+                borderRadius: "2px",
+                mb: 2,
+              }}
+            />
+            <Typography variant="body1" color="text.secondary">
+              Hören, Reden, Mitgestalten
+            </Typography>
           </Box>
-          <Typography component="h2" variant="h4" sx={{ mb: 1 }}>
-            Welcome Back
+          <Typography
+            component="h2"
+            variant="h4"
+            sx={{ mb: 1, textAlign: "center" }}
+          >
+            Willkommen zurück
           </Typography>
-          <Typography color="text.secondary" sx={{ mb: 2 }}>
-            Please login to your account to continue.
+          <Typography
+            color="text.secondary"
+            sx={{ mb: 2, textAlign: "center" }}
+          >
+            Bitte melde dich an, um fortzufahren.
           </Typography>
           <Box
             component="form"
