@@ -31,10 +31,8 @@ const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
 
-  // const DUMMY_USERNAME = "admin";
-  // const DUMMY_PASSWORD = "password123";
-  const DUMMY_USERNAME = import.meta.env.VITE_APP_USERNAME;
-  const DUMMY_PASSWORD = import.meta.env.VITE_APP_PASSWORD;
+  const DUMMY_USERNAME = "Klimaneustart";
+  const DUMMY_PASSWORD = "Berlin2030";
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
