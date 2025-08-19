@@ -4,8 +4,8 @@ import Grid from "@mui/material/Unstable_Grid2";
 import { getAnalyticsData, AnalyticsData } from "./mock_analytics_data";
 import StatCard from "./StatCard";
 import SimpleBarChart from "./SimpleBarChart";
-import { DialerSipOutlined } from "@mui/icons-material";
-// import { Assessment, PeopleAlt, AccessTimeFilled } from '@mui/icons-material';
+import SimplePieChart from "./SimplePieChart";
+import { Assessment, PeopleAlt, AccessTimeFilled, TrendingUp } from "@mui/icons-material";
 
 const AnalyticsDashboard: React.FC = () => {
   const [data, setData] = useState<AnalyticsData | null>(null);
@@ -49,29 +49,37 @@ const AnalyticsDashboard: React.FC = () => {
       </Typography>
 
       {/* Stat Cards */}
-      <Grid container spacing={3} sx={{ mb: 3 }}>
-        <Grid xs={12} sm={6} md={4}>
+      <Grid container spacing={3} sx={{ mb: 4 }}>
+        <Grid xs={12} sm={6} md={3}>
           <StatCard
             title="Total Dialogues"
             value={data.totalDialogues}
-            icon={<DialerSipOutlined />}
-            // icon={<Assessment />}
+            icon={<Assessment />}
+            color="#2196F3"
           />
         </Grid>
-        <Grid xs={12} sm={6} md={4}>
+        <Grid xs={12} sm={6} md={3}>
           <StatCard
             title="Total Participants"
             value={data.totalParticipants}
-            icon={<DialerSipOutlined />}
-            // icon={<PeopleAlt />}
+            icon={<PeopleAlt />}
+            color="#4CAF50"
           />
         </Grid>
-        <Grid xs={12} sm={6} md={4}>
+        <Grid xs={12} sm={6} md={3}>
           <StatCard
             title="Avg. Duration (min)"
             value={data.avgDuration}
-            icon={<DialerSipOutlined />}
-            // icon={<AccessTimeFilled />}
+            icon={<AccessTimeFilled />}
+            color="#FF9800"
+          />
+        </Grid>
+        <Grid xs={12} sm={6} md={3}>
+          <StatCard
+            title="Initiative Engagement"
+            value={`${engagementRate}%`}
+            icon={<TrendingUp />}
+            color="#9C27B0"
           />
         </Grid>
       </Grid>
@@ -79,44 +87,36 @@ const AnalyticsDashboard: React.FC = () => {
       {/* Charts */}
       <Grid container spacing={3}>
         <Grid xs={12} md={6}>
-          <SimpleBarChart title="Top Discussed Topics" data={data.topTopics} />
-          {/* <LineChart
-                        {...chartsParams}
-                        series={[
-                            {
-                                data: [15, 23, 18, 19, 13],
-                                label: 'Example',
-                                color,
-                            },
-                        ]}
-                    /> */}
+          <SimplePieChart title="Top Discussed Topics" data={data.topTopics} />
         </Grid>
         <Grid xs={12} md={6}>
-          <SimpleBarChart
+          <SimplePieChart
             title="Dialogues per District"
             data={data.dialoguesByDistrict}
           />
         </Grid>
         <Grid xs={12} md={6}>
-          <SimpleBarChart
+          <SimplePieChart
             title="Top Interest Areas"
             data={data.topInterestAreas}
           />
         </Grid>
         <Grid xs={12} md={6}>
           <Paper
-            variant="outlined"
+            elevation={3}
             sx={{
-              p: 2,
-              borderRadius: 2,
+              p: 3,
+              borderRadius: 3,
               height: "100%",
               display: "flex",
               flexDirection: "column",
               justifyContent: "center",
+              background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+              color: 'white'
             }}
           >
-            <Typography variant="h6" gutterBottom>
-              Initiative Engagement
+            <Typography variant="h6" gutterBottom sx={{ color: 'white', fontWeight: 'bold' }}>
+              Initiative Engagement Details
             </Typography>
             <Box
               sx={{
@@ -129,26 +129,26 @@ const AnalyticsDashboard: React.FC = () => {
               }}
             >
               <Box sx={{ textAlign: "center" }}>
-                <Typography variant="h4" fontWeight="bold">
+                <Typography variant="h4" fontWeight="bold" sx={{ color: 'white' }}>
                   {data.initiativeEngagement.recommended}
                 </Typography>
-                <Typography variant="body2" color="text.secondary">
+                <Typography variant="body2" sx={{ color: 'rgba(255,255,255,0.8)' }}>
                   Recommended
                 </Typography>
               </Box>
               <Box sx={{ textAlign: "center" }}>
-                <Typography variant="h4" fontWeight="bold">
+                <Typography variant="h4" fontWeight="bold" sx={{ color: 'white' }}>
                   {data.initiativeEngagement.selected}
                 </Typography>
-                <Typography variant="body2" color="text.secondary">
+                <Typography variant="body2" sx={{ color: 'rgba(255,255,255,0.8)' }}>
                   Selected
                 </Typography>
               </Box>
               <Box sx={{ textAlign: "center" }}>
-                <Typography variant="h4" fontWeight="bold" color="success.main">
+                <Typography variant="h4" fontWeight="bold" sx={{ color: '#4CAF50' }}>
                   {engagementRate}%
                 </Typography>
-                <Typography variant="body2" color="text.secondary">
+                <Typography variant="body2" sx={{ color: 'rgba(255,255,255,0.8)' }}>
                   Engagement Rate
                 </Typography>
               </Box>

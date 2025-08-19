@@ -6,37 +6,45 @@ interface StatCardProps {
     title: string;
     value: string | number;
     icon: React.ReactElement;
+    color?: string;
 }
 
-const StatCard: React.FC<StatCardProps> = ({ title, value, icon }) => {
+const StatCard: React.FC<StatCardProps> = ({ title, value, icon, color = 'primary.main' }) => {
     return (
         <Paper 
-            variant="outlined" 
+            elevation={3}
             sx={{ 
-                p: 2, 
+                p: 3, 
                 display: 'flex', 
                 alignItems: 'center', 
                 height: '100%',
-                borderRadius: 2
+                borderRadius: 3,
+                background: 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)',
+                transition: 'transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out',
+                '&:hover': {
+                    transform: 'translateY(-4px)',
+                    boxShadow: '0 8px 25px rgba(0,0,0,0.15)'
+                }
             }}
         >
             <Box sx={{ 
-                mr: 2, 
-                p: 1.5,
-                bgcolor: 'success.main',
-                borderRadius: '50%',
+                mr: 3, 
+                p: 2,
+                bgcolor: color,
+                borderRadius: '16px',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                color: 'primary.contrastText'
+                color: 'white',
+                boxShadow: '0 4px 12px rgba(0,0,0,0.15)'
             }}>
                 {icon}
             </Box>
             <Box>
-                <Typography variant="h4" component="p" fontWeight="bold">
+                <Typography variant="h3" component="p" fontWeight="bold" sx={{ mb: 0.5 }}>
                     {value}
                 </Typography>
-                <Typography variant="body2" color="text.secondary">
+                <Typography variant="body1" color="text.secondary" fontWeight="medium">
                     {title}
                 </Typography>
             </Box>
