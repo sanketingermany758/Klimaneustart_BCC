@@ -19,6 +19,14 @@ const ThankYou: React.FC<AppProps> = ({ onRestart, data }) => {
         gap: 3,
       }}
     >
+      {/* Logo */}
+      <Box sx={{ mb: 2 }}>
+        <img
+          src="/icons/logo_actual_square.png"
+          alt="Klimaneustart Berlin Logo"
+          style={{ width: "120px", height: "120px" }}
+        />
+      </Box>
       <Paper
         elevation={0}
         sx={{
@@ -61,6 +69,26 @@ const ThankYou: React.FC<AppProps> = ({ onRestart, data }) => {
         </Paper>
       )}
       <Box sx={{ flexGrow: 1 }} /> {/* Spacer to push button to the bottom */}
+      {/* Deep Dive Button */}
+      <Button
+        variant="outlined"
+        color="secondary"
+        size="large"
+        sx={{
+          width: "100%",
+          maxWidth: { xs: "100%", sm: 400 },
+          mb: 2,
+          border: "2px solid #FF3333",
+          color: "#FF3333",
+          "&:hover": {
+            bgcolor: "#FF3333",
+            color: "white",
+          },
+        }}
+        onClick={() => alert("Deep Dive functionality coming soon!")}
+      >
+        Deep Dive in Initiative
+      </Button>
       <Button
         onClick={onRestart}
         variant="contained"
