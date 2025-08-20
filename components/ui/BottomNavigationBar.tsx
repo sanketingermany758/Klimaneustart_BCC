@@ -1,6 +1,7 @@
 import * as React from "react";
 import { BottomNavigation, BottomNavigationAction, Paper } from "@mui/material";
 import { COLORS } from "../../constants";
+import { useLanguage } from "../LanguageContext";
 
 let editNotes = "/icons/note_in_folder_icon.png";
 let piechartIcon = "/icons/pie_chart_icon.png";
@@ -14,6 +15,7 @@ const BottomNavigationBar: React.FC<BottomNavigationBarProps> = ({
   currentView,
   onTabChange,
 }) => {
+  const { t } = useLanguage();
   const handleChange = (
     event: React.SyntheticEvent,
     newValue: "dialogue" | "dashboard"
@@ -33,14 +35,14 @@ const BottomNavigationBar: React.FC<BottomNavigationBarProps> = ({
         onChange={handleChange}
       >
         <BottomNavigationAction
-          label="New Dialogue"
+          label={t("dialogue.newDialogue")}
           value="dialogue"
           icon={<img src={editNotes} width={24} height={24}></img>}
           color={currentView === "dialogue" && '#0c328a' }
           sx={currentView === "dialogue" && { background: COLORS.grey2, border:"3px solid #0c328a", borderRadius: "4px" }}
         />
         <BottomNavigationAction
-          label="Dashboard"
+          label={t("analytics.analyticsDashboard")}
           value="dashboard"
           icon={<img src={piechartIcon} width={24} height={24}></img>}
           color={currentView === "dashboard" && '#0c328a' }

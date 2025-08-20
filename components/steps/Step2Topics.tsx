@@ -20,7 +20,7 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { AppProps } from "../../types";
 import { TOPIC_DEFINITIONS } from "../../constants";
-import { getString } from "../../stringutils";
+import { useLanguage } from "../LanguageContext";
 import { TransitionGroup } from "react-transition-group";
 import styled from "styled-components";
 import { COLORS } from "../../constants";
@@ -56,6 +56,7 @@ const Step2Topics: React.FC<AppProps> = ({
 }) => {
   const [activeTopicId, setActiveTopicId] = useState<string | null>(null);
   const theme = useTheme();
+  const { t } = useLanguage();
 
   const handleOptionToggle = (
     topicId: string,
@@ -122,7 +123,7 @@ const Step2Topics: React.FC<AppProps> = ({
             fullWidth
             multiline
             rows={8}
-            label="Notizen..."
+            label={t("dialogue.notesLabel")}
             value={(data.topicDetails[topic.id] as any)?.customNote || ""}
             onChange={(e) =>
               updateData({
@@ -180,7 +181,7 @@ const Step2Topics: React.FC<AppProps> = ({
                 fullWidth
                 multiline
                 rows={2}
-                label="Notizen..."
+                label={t("dialogue.notesLabel")}
                 value={
                   (data.topicDetails?.[topic.id] as any)?.[sub.id]
                     ?.customNote || ""
@@ -308,10 +309,10 @@ const Step2Topics: React.FC<AppProps> = ({
         {!isSidebarMode && (
           <StyledPaper elevation={0}>
             <Typography variant="h4" component="h1" gutterBottom>
-              {getString("dialogue.headerTitle")}
+              {t("dialogue.headerTitle")}
             </Typography>
             <Typography variant="h6">
-              {getString("dialogue.headerSubtitle2")}
+              {t("dialogue.headerSubtitle2")}
             </Typography>
           </StyledPaper>
         )}
@@ -394,14 +395,14 @@ const Step2Topics: React.FC<AppProps> = ({
         }}
       >
         <StyledButton variant="text" onClick={onBack}>
-          Back
+          {t("dialogue.back")}
         </StyledButton>
         <StyledButton
           variant="contained"
           onClick={onNext}
           endIcon={<ArrowForwardIcon />}
         >
-          Weiter
+          {t("dialogue.next")}
         </StyledButton>
       </Box>
     </Container>

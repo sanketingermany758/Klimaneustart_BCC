@@ -14,6 +14,7 @@ import { AppProps } from "../../types";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { COLORS } from "../../constants";
 import styled from "styled-components";
+import { useLanguage } from "../LanguageContext";
 
 type ParticipantType = "single" | "family" | "couple";
 
@@ -31,6 +32,7 @@ const Step5Metrics: React.FC<AppProps> = ({
   onNext,
   onBack,
 }) => {
+  const { t } = useLanguage();
   const handleParticipantTypeChange = (type: ParticipantType) => {
     // Enforce single selection like a radio group
     updateData({ participantType: type });
@@ -51,15 +53,15 @@ const Step5Metrics: React.FC<AppProps> = ({
         }}
       >
         <Typography variant="h4" component="h1">
-          Dialog
+          {t("metrics.dialogue")}
         </Typography>
-        <Typography variant="h6">Allgemeine Infos</Typography>
+        <Typography variant="h6">{t("metrics.generalInformation")} Infos</Typography>
       </Paper>
 
       <Grid container spacing={2}>
         <Grid xs={6}>
           <Typography variant="body2" align="center" sx={{ mb: 1 }}>
-            Dialogpartner:innen
+            {t("metrics.dialoguePartners")}
           </Typography>
           <TextField
             fullWidth
@@ -104,7 +106,7 @@ const Step5Metrics: React.FC<AppProps> = ({
         </Grid>
         <Grid xs={6}>
           <Typography variant="body2" align="center" sx={{ mb: 1 }}>
-            Dauer (MIN)
+            {t("metrics.duration")}
           </Typography>
           <TextField
             fullWidth
@@ -158,7 +160,7 @@ const Step5Metrics: React.FC<AppProps> = ({
                 onChange={() => handleParticipantTypeChange("single")}
               />
             }
-            label="Single"
+            label={t("metrics.single")}
           />
           <FormControlLabel
             control={
@@ -167,7 +169,7 @@ const Step5Metrics: React.FC<AppProps> = ({
                 onChange={() => handleParticipantTypeChange("family")}
               />
             }
-            label="Family"
+            label={t("metrics.family")}
           />
           <FormControlLabel
             control={
@@ -176,14 +178,14 @@ const Step5Metrics: React.FC<AppProps> = ({
                 onChange={() => handleParticipantTypeChange("couple")}
               />
             }
-            label="Couple"
+            label={t("metrics.couple")}
           />
         </FormGroup>
       </Paper>
 
       <TextField
         fullWidth
-        label="Standort.         soon"
+        label={t("metrics.location") + " " + t("common.soon")}
         value={data.location || ""}
         onChange={(e) => updateData({ location: e.target.value })}
         variant="filled"
@@ -215,14 +217,14 @@ const Step5Metrics: React.FC<AppProps> = ({
         }}
       >
         <StyledButton variant="text" onClick={onBack}>
-          Zurück
+          {t("dialogue.back")}
         </StyledButton>
         <StyledButton
           variant="contained"
           onClick={onNext}
           endIcon={<ArrowForwardIcon />}
         >
-          Weiter
+          {t("dialogue.next")}
         </StyledButton>
       </Box>
     </Box>

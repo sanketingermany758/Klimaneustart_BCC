@@ -3,6 +3,7 @@ import { Box, Typography, Button, IconButton } from "@mui/material";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import TrendingFlatIcon from "@mui/icons-material/TrendingFlat";
 import SchoolIcon from "@mui/icons-material/School"; // Placeholder for 'brain' icon
+import { useLanguage } from "../LanguageContext";
 
 let logo = "/icons/logo_actual_square.png";
 
@@ -11,6 +12,8 @@ interface Step0WelcomeProps {
 }
 
 const Step0Welcome: React.FC<Step0WelcomeProps> = ({ onNext }) => {
+  const { t } = useLanguage();
+
   return (
     <Box
       sx={{
@@ -40,7 +43,7 @@ const Step0Welcome: React.FC<Step0WelcomeProps> = ({ onNext }) => {
       />
 
       <Typography variant="h3" component="h1" gutterBottom>
-        Sag doch mal,Berlin
+        {t('welcome.title')}
       </Typography>
 
       <Typography
@@ -48,13 +51,13 @@ const Step0Welcome: React.FC<Step0WelcomeProps> = ({ onNext }) => {
         color="text.secondary"
         sx={{ mb: 4, maxWidth: "500px" }}
       >
-        Bürger:innen Dialog dokumentiere zu gesellschaftsrelevanten Theme
+        {t('welcome.subtitle')}
       </Typography>
 
       <Box sx={{ display: "flex", alignItems: "center", mb: 4 }}>
         <SchoolIcon color="action" />
         <Typography variant="body1" sx={{ ml: 1 }}>
-          cared for by Generation iTrust
+          {t('welcome.caredBy')}
         </Typography>
       </Box>
 
@@ -65,7 +68,7 @@ const Step0Welcome: React.FC<Step0WelcomeProps> = ({ onNext }) => {
         onClick={onNext}
         endIcon={<TrendingFlatIcon />}
       >
-        Starte den Dialog
+        {t('welcome.startButton')}
       </Button>
     </Box>
   );

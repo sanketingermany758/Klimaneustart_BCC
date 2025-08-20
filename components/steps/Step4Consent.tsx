@@ -14,6 +14,7 @@ import { QRCodeCanvas } from "qrcode.react";
 import { AppProps } from "../../types";
 import QrCode2Icon from "@mui/icons-material/QrCode2";
 import { COLORS } from "../../constants";
+import { useLanguage } from "../LanguageContext";
 import styled from "styled-components";
 
 const modalStyle = {
@@ -47,6 +48,7 @@ const Step4Consent: React.FC<AppProps> = ({
   const [contactPreference, setContactPreference] = useState<
     "contact" | "anonymous"
   >(data.isAnonymous ? "anonymous" : "contact");
+  const { t } = useLanguage();
 
   const handlePreferenceChange = (
     event: React.MouseEvent<HTMLElement>,
@@ -87,10 +89,10 @@ const Step4Consent: React.FC<AppProps> = ({
         }}
       >
         <Typography variant="h4" component="h1">
-          In Kontakt bleiben
+          {t("consent.stayInTouch")}
         </Typography>
         <Typography variant="h6">
-          Bleib auf dem Laufendem Verbinde dich mit Initiativen
+          {t("consent.stayUpToDate")}
         </Typography>
       </Paper>
 
@@ -102,20 +104,20 @@ const Step4Consent: React.FC<AppProps> = ({
         aria-label="contact preference"
         fullWidth
       >
-        <ToggleButton value="contact">Kontakt teilen</ToggleButton>
-        <ToggleButton value="anonymous">Anonym bleiben</ToggleButton>
+        <ToggleButton value="contact">{t("consent.shareContact")}</ToggleButton>
+        <ToggleButton value="anonymous">{t("consent.stayAnonymous")}</ToggleButton>
       </ToggleButtonGroup>
 
       {contactPreference === "contact" && (
         <Paper variant="outlined" sx={{ p: 3, mt: 1 }}>
           <Typography variant="h6" gutterBottom>
-            Welche Kontaktdaten möchtest du teilen?
+            {t("consent.whichContactDetails")}
           </Typography>
           <Grid container spacing={2}>
             <Grid xs={12} sm={6}>
               <TextField
                 fullWidth
-                label="Vorname"
+                label={t("consent.firstName")}
                 value={data.firstName}
                 onChange={(e) => updateData({ firstName: e.target.value })}
               />
@@ -123,7 +125,7 @@ const Step4Consent: React.FC<AppProps> = ({
             <Grid xs={12} sm={6}>
               <TextField
                 fullWidth
-                label="Nachname"
+                label={t("consent.lastName")}
                 value={data.lastName}
                 onChange={(e) => updateData({ lastName: e.target.value })}
               />
@@ -140,7 +142,7 @@ const Step4Consent: React.FC<AppProps> = ({
             <Grid xs={12}>
               <TextField
                 fullWidth
-                label="Telefon"
+                label={t("consent.telephone")}
                 type="tel"
                 value={data.phone}
                 onChange={(e) => updateData({ phone: e.target.value })}
@@ -152,8 +154,7 @@ const Step4Consent: React.FC<AppProps> = ({
 
       {contactPreference === "anonymous" && (
         <Alert severity="info" sx={{ mt: 1 }}>
-          Deine Privatsphäre ist geschützt. Es werden nur Dialogdaten mit
-          ausdrücklicher Zustimmung gespeichert.
+          {t("consent.privacyProtected")}
         </Alert>
       )}
 
@@ -163,13 +164,11 @@ const Step4Consent: React.FC<AppProps> = ({
           startIcon={<QrCode2Icon />}
           onClick={() => setShowQR(true)}
         >
-          Unser QR Code
+          {t("summary.ourQRCode")}
         </Button>
       </Paper>
       <Typography variant="body2" color="text.secondary" sx={{ mt: 2 }}>
-        Deine Angaben bleiben vertraulich und werden ausschließlich dazu
-        genutzt, dich über lokale Initiativen zu informieren, die dich
-        interessieren.
+        {t("consent.confidentialInfo")}
       </Typography>
 
       <Box
@@ -181,17 +180,17 @@ const Step4Consent: React.FC<AppProps> = ({
         }}
       >
         <StyledButton variant="text" onClick={onBack}>
-          Zurück
+          {t("dialogue.back")}
         </StyledButton>
         <StyledButton variant="contained" onClick={onNext}>
-          Weiter
+          {t("dialogue.next")}
         </StyledButton>
       </Box>
 
       <Modal open={showQR} onClose={() => setShowQR(false)}>
         <Box sx={modalStyle}>
           <Typography variant="h6" component="h2" gutterBottom>
-            Organisation QR Code
+            {t("consent.organizationQRCode")}
           </Typography>
           <QRCodeCanvas
             value={"https://klimaneustart.berlin/"}
@@ -199,7 +198,7 @@ const Step4Consent: React.FC<AppProps> = ({
             style={{ height: "auto", maxWidth: "100%", width: "100%" }}
           />
           <Button onClick={() => setShowQR(false)} sx={{ mt: 2 }}>
-            Close
+            {t("initiatives.close")}
           </Button>
         </Box>
       </Modal>

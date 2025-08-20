@@ -2,10 +2,11 @@ import React from "react";
 import { Box, Typography, Button, Paper } from "@mui/material";
 import { AppProps } from "../../types";
 import {COLORS} from "../../constants"; 
+import { useLanguage } from "../LanguageContext";
 
 const ThankYou: React.FC<AppProps> = ({ onRestart, data }) => {
   const initiativeCount = data.selectedInitiatives.length;
-
+  const { t } = useLanguage();
   return (
     <Box
       sx={{
@@ -38,11 +39,10 @@ const ThankYou: React.FC<AppProps> = ({ onRestart, data }) => {
         }}
       >
         <Typography variant="h2" component="h1" gutterBottom>
-          Vielen Dank!
+          {t("thankYou.thankYou")}
         </Typography>
         <Typography variant="h6" component="p">
-          Your response has been recorded and will contribute to community
-          insights
+          {t("thankYou.responseRecorded")}
         </Typography>
       </Paper>
       {/* This box is only shown if the user selected initiatives and is not anonymous */}
@@ -101,7 +101,7 @@ const ThankYou: React.FC<AppProps> = ({ onRestart, data }) => {
           color: COLORS.brown2,
         }}
       >
-        Nächster Dialog
+        {t("thankYou.nextDialogue")}
       </Button>
     </Box>
   );
