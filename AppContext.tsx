@@ -21,6 +21,8 @@ interface AppContextType {
   updateReflection: (data: Partial<DeineReflection>) => void;
 
   // Navigation
+  goToNext: () => void;
+  goToPrevious: () => void;
   setStep2View: (view: "district" | "topics") => void;
   restart: () => void;
   setCurrentStep: (step: number) => void; // Add this line
@@ -53,6 +55,14 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({
   const [currentStep, setCurrentStep] = useState(0);
   const [step2View, setStep2View] = useState<"district" | "topics">("district");
 
+  const goToNext = useCallback(() => {
+    setCurrentStep((prev) => Math.min(prev + 1, STEPS.length - 1)); // Ensure it doesn't exceed the last step
+  }, []);
+
+  const goToPrevious = useCallback(() => {
+    setCurrentStep((prev) => Math.max(prev - 1, 0)); // Ensure it doesn't go below the first step
+  }, []);
+
   const updateConversation = useCallback(
     (newData: Partial<ConversationData>) => {
       setConversation((prev) => ({ ...prev, ...newData }));
@@ -81,6 +91,8 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({
     setCurrentStep(step);
   }, []);
 
+  // const values = 
+
   const contextValue: AppContextType = {
     conversation,
     contactInfo,
@@ -94,6 +106,8 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({
     restart,
     setCurrentStep, // Add this to the context
     updateCurrentStep, // Add this to the context
+    goToNext,
+    goToPrevious
   };
 
   return (
