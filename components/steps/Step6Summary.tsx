@@ -20,6 +20,7 @@ import { INITIATIVES, STEPS } from "../../constants";
 import { saveConversation } from "../../services/conversationService";
 import styled from "styled-components";
 import { COLORS } from "../../constants";
+import { useLanguage } from "../LanguageContext";
 interface SummaryItemProps {
   label: string;
   value: React.ReactNode;
@@ -43,6 +44,7 @@ const SummaryItem: React.FC<SummaryItemProps> = ({
   onEdit,
   editable = false,
 }) => {
+  const { t } = useLanguage();
   const displayValue = value || (
     <Typography component="span" fontStyle="italic" color="text.secondary">
       Not provided
@@ -79,6 +81,7 @@ const Step6Summary: React.FC<AppProps> = ({
   updateData,
   navigateToStep,
 }) => {
+  const { t } = useLanguage();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState("");
   const [sendCopy, setSendCopy] = useState(false);
@@ -161,12 +164,12 @@ const Step6Summary: React.FC<AppProps> = ({
   return (
     <Box>
       <Typography variant="h4" component="h1" gutterBottom>
-        Summary & Submission
+        {t("summary.summary")}
       </Typography>
       <Paper variant="outlined">
         <List dense>
           <SummaryItem
-            label="District"
+            label={t("districts.selectDistrict")}
             value={data.districts.join(", ")}
             editable
             onEdit={() => handleEdit(StepId.District)}
@@ -178,7 +181,7 @@ const Step6Summary: React.FC<AppProps> = ({
             onEdit={() => handleEdit(StepId.Topics)}
           />
           <SummaryItem
-            label="Selected Initiatives"
+            label={t("initiatives.initiatives")}
             value={data.selectedInitiatives
               .map((id) => INITIATIVES.find((i) => i.id === id)?.name)
               .join(", ")}
@@ -186,37 +189,37 @@ const Step6Summary: React.FC<AppProps> = ({
             onEdit={() => handleEdit(StepId.Initiatives)}
           />
           <SummaryItem
-            label="Anonymous"
+            label={t("consent.stayAnonymous")}
             value={data.isAnonymous ? "Yes" : "No"}
             editable
             onEdit={() => handleEdit(StepId.Consent)}
           />
           <SummaryItem
-            label="Contact Shared"
+            label={t("consent.shareContact")}
             value={data.shareContact ? `Yes (${data.contactInfo})` : "No"}
             editable
             onEdit={() => handleEdit(StepId.Consent)}
           />
           <SummaryItem
-            label="Observer Reflection"
+            label={t("reflection.resonanceEssence")}
             value={data.observerReflection}
             editable
             onEdit={() => handleEdit(StepId.Reflection)}
           />
           <SummaryItem
-            label="Surprise"
+            label={t("reflection.yourReflection")}
             value={data.surprise}
             editable
             onEdit={() => handleEdit(StepId.Reflection)}
           />
           <SummaryItem
-            label="Metrics"
+            label={t("metrics.duration")}
             value={`${data.numPeople} people, ${data.duration} minutes`}
             editable
             onEdit={() => handleEdit(StepId.Metrics)}
           />
           <SummaryItem
-            label="Standort"
+            label={t("metrics.location")}
             value={data.location || "Not provided"}
           />
         </List>
@@ -246,7 +249,7 @@ const Step6Summary: React.FC<AppProps> = ({
 
       <Box sx={{ display: "flex", justifyContent: "space-between", mt: 4 }}>
         <StyledButton variant="text" onClick={onBack}>
-          Back
+          {t("dialogue.back")}
         </StyledButton>
         <LoadingButton
           variant="contained"

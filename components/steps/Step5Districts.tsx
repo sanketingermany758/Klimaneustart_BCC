@@ -6,6 +6,7 @@ import { BERLIN_DISTRICTS } from "../../constants";
 import { getString } from "../../stringutils";
 import styled from "styled-components";
 import { COLORS } from "../../constants";
+import { useLanguage } from "../LanguageContext";
 
 const Container = styled.div`
   display: flex;
@@ -43,6 +44,7 @@ const Step5District: React.FC<AppProps> = ({
   onNext,
   onBack,
 }) => {
+  const { t } = useLanguage();
   const handleLocalBack = () => {
     onBack();
   };
@@ -61,10 +63,10 @@ const Step5District: React.FC<AppProps> = ({
       <StyledPaper elevation={0}
       >
         <Typography variant="h4" component="h1" gutterBottom>
-          {getString("dialogue.headerTitle")}
+          {t("dialogue.headerTitle")}
         </Typography>
         <Typography variant="h6">
-          {getString("dialogue.headerSubtitle")}
+          {t("dialogue.headerSubtitle")}
         </Typography>
       </StyledPaper>
       <Grid container spacing={2}>
@@ -91,7 +93,7 @@ const Step5District: React.FC<AppProps> = ({
           onClick={() => onNext()}
           endIcon={<ArrowForwardIcon />}
         >
-          Weiter
+          {t("dialogue.next")}
         </StyledButton>
       </Box>
     </Box>

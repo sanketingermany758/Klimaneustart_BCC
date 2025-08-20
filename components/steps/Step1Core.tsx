@@ -21,11 +21,11 @@ const StyledPaper = styled(Paper)`
   text-align: center;
 `;
 
-const NotesField = styled(TextField)`
-  & .MuiOutlinedInput-root {
-    background-color: ${COLORS.white2};
-  }
-`;
+// const NotesField = styled(TextField)`
+//   & .MuiOutlinedInput-root {
+//     background-color: ${COLORS.white2};
+//   }
+// `;
 
 const AudioPaper = styled(Paper)`
   display: flex;
@@ -56,21 +56,33 @@ const Step1Core: React.FC<AppProps> = ({ data, updateData, onNext }) => {
   const { t } = useLanguage();
 
   return (
-    <Container>
-      <StyledPaper elevation={0}>
+    <Box
+      sx={{ display: "flex", flexDirection: "column", height: "100%", gap: 3 }}
+    >
+      <Paper
+        elevation={0}
+        sx={{
+          p: { xs: 2, sm: 4 },
+          bgcolor: "info.main",
+          color: "info.contrastText",
+          border: "2px solid #93c47D",
+        }}
+      >
+
+
         <Typography variant="h4" component="h1" gutterBottom>
           {t("dialogue.headerTitle")}
         </Typography>
         <Typography variant="h6">
           {t("dialogue.headerSubtitle")}
         </Typography>
-      </StyledPaper>
+      </Paper>
 
       <Box sx={{ flexGrow: 1 }}>
         <Typography variant="h6" gutterBottom>
           Notizen
         </Typography>
-        <NotesField
+        <TextField
           fullWidth
           multiline
           rows={8}
@@ -80,6 +92,12 @@ const Step1Core: React.FC<AppProps> = ({ data, updateData, onNext }) => {
           onChange={(e) => updateData({ notes: e.target.value })}
           inputProps={{ maxLength: MAX_CHARS }}
           helperText={`${data.notes.length}/${MAX_CHARS} max`}
+          sx={{
+            "& .MuiOutlinedInput-root": {
+              backgroundColor: "background.paper",
+            },
+          }}
+
         />
 
         <AudioPaper elevation={0}>
@@ -99,7 +117,7 @@ const Step1Core: React.FC<AppProps> = ({ data, updateData, onNext }) => {
           weiter ...
         </StyledButton>
       </Footer>
-    </Container>
+    </Box>
   );
 };
 

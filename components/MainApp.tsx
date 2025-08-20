@@ -17,13 +17,10 @@ import Step5District from "./steps/Step5Districts";
 import Step6Summary from "./steps/Step6Summary";
 import ThankYou from "./steps/ThankYou";
 
-  // const [currentStep, setCurrentStep] = useState<number>(0);
-
-  // const [step2View, setStep2View] = useState<"district" | "topics">("district");
 
 
 const MainApp: React.FC = () => {
-  const { currentStep, updateCurrentStep, conversation, updateConversation } = useAppContext();
+  const { currentStep, updateCurrentStep } = useAppContext();
   const [conversationData, setConversationData] = useState<ConversationData>({
     ...INITIAL_CONVERSATION_DATA,
     uuid: crypto.randomUUID(),
@@ -74,7 +71,7 @@ const restart = useCallback(() => {
 
     const commonProps = {
       data: conversationData,
-      updateData: updateConversation,
+      updateData: updateData,
       onNext: handleNext,
       onBack: handleBack,
       onRestart: restart,

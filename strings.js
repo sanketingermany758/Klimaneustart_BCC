@@ -13,7 +13,8 @@ export default {
             "skip": "überspringen",
             "back": "Zurück",
             "next": "Weiter",
-            "continue": "Weiter"
+            "continue": "Weiter",
+            "newDialogue": "Neuer Dialog"
         },
         "welcome": {
             "title": "Sag doch mal, Berlin",
@@ -141,6 +142,7 @@ export default {
             "topInterestAreas": "Top-Interessensgebiete",
             "topSelectedIssues": "Meistgewählte Themen",
             "initiativeEngagement": "Initiativen-Beteiligung",
+            "initiativeEngagementDetails": "Initiativen-Beteiligung Details",
             "recommended": "Empfohlen",
             "selected": "Ausgewählt",
             "engagementRate": "Beteiligungsrate"
@@ -168,7 +170,8 @@ export default {
             "skip": "skip",
             "back": "Back",
             "next": "Next",
-            "continue": "Continue"
+            "continue": "Continue",
+            "newDialogue": "New Dialogue"
         },
         "welcome": {
             "title": "Yo, speak up, Berlin",
@@ -296,6 +299,7 @@ export default {
             "topInterestAreas": "Top Interest Areas",
             "topSelectedIssues": "Top Selected Issues",
             "initiativeEngagement": "Initiative Engagement",
+            "initiativeEngagementDetails": "Initiative Engagement Details",
             "recommended": "Recommended",
             "selected": "Selected",
             "engagementRate": "Engagement Rate"
