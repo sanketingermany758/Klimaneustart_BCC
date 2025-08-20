@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Typography, TextField, Button, Paper, Chip } from "@mui/material";
 import { AppProps } from "../../types";
-import { getString } from "../../stringutils";
+import { useLanguage } from "../LanguageContext";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import styled from "styled-components";
 import { COLORS } from "../../constants";
@@ -53,15 +53,16 @@ const StyledButton = styled(Button)`
 
 const Step1Core: React.FC<AppProps> = ({ data, updateData, onNext }) => {
   const MAX_CHARS = 2000;
+  const { t } = useLanguage();
 
   return (
     <Container>
       <StyledPaper elevation={0}>
         <Typography variant="h4" component="h1" gutterBottom>
-          {getString("dialogue.headerTitle")}
+          {t("dialogue.headerTitle")}
         </Typography>
         <Typography variant="h6">
-          {getString("dialogue.headerSubtitle")}
+          {t("dialogue.headerSubtitle")}
         </Typography>
       </StyledPaper>
 
@@ -74,7 +75,7 @@ const Step1Core: React.FC<AppProps> = ({ data, updateData, onNext }) => {
           multiline
           rows={8}
           variant="outlined"
-          placeholder={getString("dialogue.notesPlaceholder")}
+          placeholder={t("dialogue.notesPlaceholder")}
           value={data.notes}
           onChange={(e) => updateData({ notes: e.target.value })}
           inputProps={{ maxLength: MAX_CHARS }}
@@ -83,9 +84,9 @@ const Step1Core: React.FC<AppProps> = ({ data, updateData, onNext }) => {
 
         <AudioPaper elevation={0}>
           <Typography color="text.secondary" fontWeight="500">
-            {getString("dialogue.recordAudio")}
+            {t("dialogue.recordAudio")}
           </Typography>
-          <Chip label={getString("dialogue.soon")} disabled />
+          <Chip label={t("common.soon")} disabled />
         </AudioPaper>
       </Box>
 

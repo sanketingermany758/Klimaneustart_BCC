@@ -9,7 +9,7 @@ import Grid from "@mui/material/Unstable_Grid2";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { AppProps } from "../../types";
 import { BERLIN_DISTRICTS } from "../../constants";
-import { getString } from "../../stringutils";
+import { useLanguage } from "../LanguageContext";
 import styled from "styled-components";
 import { COLORS } from "../../constants";
 
@@ -49,6 +49,8 @@ const Step2District: React.FC<AppProps> = ({
   onNext,
   onBack,
 }) => {
+  const { t } = useLanguage();
+
   const handleDistrictSelect = (districtName: string) => {
     // Single district selection
     updateData({ districts: [districtName] });
@@ -58,10 +60,10 @@ const Step2District: React.FC<AppProps> = ({
     <Container>
       <StyledPaper elevation={0}>
         <Typography variant="h4" component="h1" gutterBottom>
-          {getString("dialogue.headerTitle")}
+          {t("dialogue.headerTitle")}
         </Typography>
         <Typography variant="h6">
-          {getString("dialogue.headerSubtitle")}
+          {t("dialogue.headerSubtitle")}
         </Typography>
       </StyledPaper>
 
@@ -83,14 +85,14 @@ const Step2District: React.FC<AppProps> = ({
 
       <Box sx={{ display: "flex", justifyContent: "space-between", pt: 2 }}>
         <Button variant="text" onClick={onBack}>
-          Back
+          {t("dialogue.back")}
         </Button>
         <StyledButton
           variant="contained"
           onClick={onNext}
           endIcon={<ArrowForwardIcon />}
         >
-          {data.districts.length === 0 ? "Skip" : "Weiter"}
+          {data.districts.length === 0 ? t("dialogue.skip") : t("dialogue.next")}
         </StyledButton>
       </Box>
     </Container>

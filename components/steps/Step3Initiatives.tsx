@@ -15,6 +15,7 @@ import { INTEREST_AREAS2, INITIATIVES, COLORS } from "../../constants";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { saveConversation } from "../../services/conversationService";
+import { useLanguage } from "../LanguageContext";
 import styled from "styled-components";
 
 const modalStyle = {
@@ -66,6 +67,7 @@ const Step3Initiatives: React.FC<AppProps> = ({
   const [qrCodeValue, setQrCodeValue] = useState<string | null>(null);
   const [showInitiatives, setShowInitiatives] = useState(false);
   const [isSavingDraft, setIsSavingDraft] = useState(false);
+  const { t } = useLanguage();
 
   const handleLocalBack = () => {
     if (showInitiatives) setShowInitiatives(false);
@@ -123,9 +125,9 @@ const Step3Initiatives: React.FC<AppProps> = ({
         }}
       >
         <Typography variant="h4" component="h1">
-          Initiative Matching
+          {t("initiatives.initiativeMatching")}
         </Typography>
-        <Typography variant="h6">Select Interest Areas</Typography>
+        <Typography variant="h6">{t("initiatives.selectInterestAreas")}</Typography>
       </Paper>
       <Grid container spacing={2}>
         {INTEREST_AREAS2.map((interest) => {
@@ -168,11 +170,11 @@ const Step3Initiatives: React.FC<AppProps> = ({
         }}
       >
         <StyledButton variant="text" onClick={onBack}>
-          Back
+          {t("dialogue.back")}
         </StyledButton>
         <Box>
           <StyledButton variant="text" onClick={handleSkip} sx={{ mr: 2 }}>
-            Skip
+            {t("dialogue.skip")}
           </StyledButton>
           <StyledButton
             variant="contained"
@@ -180,7 +182,7 @@ const Step3Initiatives: React.FC<AppProps> = ({
             disabled={data.interestAreas.length === 0}
             endIcon={<ArrowForwardIcon />}
           >
-            Find Initiatives
+            {t("initiatives.findInitiatives")}
           </StyledButton>
         </Box>
       </Box>
@@ -194,11 +196,11 @@ const Step3Initiatives: React.FC<AppProps> = ({
         startIcon={<ArrowBackIcon />}
         sx={{ mb: 2 }}
       >
-        Change Interests
+        {t("initiatives.changeInterests")}
       </StyledButton>
       <Typography variant="h4" gutterBottom>
-        Relevant Initiatives{" "}
-        {data.districts.length > 0 && `in ${data.districts.join(", ")}`}
+        {t("initiatives.relevantInitiatives")}
+        {data.districts.length > 0 && ` ${t("initiatives.in")} ${data.districts.join(", ")}`}
       </Typography>
       <Box sx={{ display: "flex", flexDirection: "column", gap: 2, mb: 4 }}>
         {filteredInitiatives.length > 0 ? (
@@ -248,7 +250,7 @@ const Step3Initiatives: React.FC<AppProps> = ({
                         flexShrink: 0,
                       }}
                     >
-                      QR Code
+                      {t("initiatives.qrCode")}
                     </Button>
                   </Box>
                 </Box>
@@ -257,7 +259,7 @@ const Step3Initiatives: React.FC<AppProps> = ({
           })
         ) : (
           <Typography color={COLORS.heading} fontStyle="italic">
-            No initiatives match the current filters.
+            {t("initiatives.noInitiativesMatch")}
           </Typography>
         )}
 
@@ -292,21 +294,21 @@ const Step3Initiatives: React.FC<AppProps> = ({
             sx={{ p: 2 }}
           >
             <Typography variant="h6">
-              {isSavingDraft ? "Preparing QR..." : "Show QR"}
+              {isSavingDraft ? t("initiatives.preparingQR") : t("initiatives.showQR")}
             </Typography>
           </CardActionArea>
         </Card>
       </Box>
       <Box sx={{ display: "flex", justifyContent: "space-between", pt: 2 }}>
         <StyledButton variant="text" onClick={handleLocalBack}>
-          Back
+          {t("dialogue.back")}
         </StyledButton>
         <StyledButton
           variant="contained"
           onClick={onNext}
           endIcon={<ArrowForwardIcon />}
         >
-          Next
+          {t("dialogue.next")}
         </StyledButton>
       </Box>
     </Box>
@@ -318,7 +320,7 @@ const Step3Initiatives: React.FC<AppProps> = ({
       <Modal open={!!qrCodeValue} onClose={() => setQrCodeValue(null)}>
         <Box sx={modalStyle}>
           <Typography variant="h6" component="h2" gutterBottom>
-            Scan for more info
+            {t("initiatives.scanForMoreInfo")}
           </Typography>
           {qrCodeValue && (
             <QRCodeCanvas
@@ -328,7 +330,7 @@ const Step3Initiatives: React.FC<AppProps> = ({
             />
           )}
           <Button onClick={() => setQrCodeValue(null)} sx={{ mt: 2 }}>
-            Close
+            {t("initiatives.close")}
           </Button>
         </Box>
       </Modal>

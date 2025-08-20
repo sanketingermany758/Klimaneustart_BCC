@@ -17,6 +17,7 @@ import {
   Visibility,
   VisibilityOff,
 } from "@mui/icons-material";
+import { useLanguage } from "./LanguageContext";
 
 import { COLORS } from "../constants";
 
@@ -30,6 +31,7 @@ const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
+  const { t } = useLanguage();
 
   const DUMMY_USERNAME = "Klimaneustart";
   const DUMMY_PASSWORD = "Berlin2030";
@@ -113,7 +115,7 @@ const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
           </Typography>
         </Box>
         <Typography variant="h4" color={COLORS.red2} sx={{ mb: 4 }}>
-          Sag doch mal,Berlin
+          {t('welcome.title')}
         </Typography>
         <Box
           sx={{
@@ -125,7 +127,7 @@ const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
           }}
         />
         <Typography variant="h6" color={COLORS.green2} sx={{ mb: 4 }}>
-          Hören, Reden, Mitgestalten
+          {t('welcome.tagline')}
         </Typography>
       </Grid>
 
@@ -177,7 +179,7 @@ const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
               color="text.secondary"
               sx={{ mt: 2, mb: 2 }}
             >
-              Sag doch mal,Berlin
+              {t('welcome.title')}
             </Typography>
             <Box
               sx={{
@@ -190,7 +192,7 @@ const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
               }}
             />
             <Typography variant="body1" color="text.secondary">
-              Hören, Reden, Mitgestalten
+              {t('welcome.tagline')}
             </Typography>
           </Box>
           <Typography
@@ -198,13 +200,13 @@ const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
             variant="h4"
             sx={{ mb: 1, textAlign: "center" }}
           >
-            Willkommen zurück
+            {t('login.welcomeBack')}
           </Typography>
           <Typography
             color="text.secondary"
             sx={{ mb: 2, textAlign: "center" }}
           >
-            Bitte melde dich an, um fortzufahren.
+            {t('login.pleaseSignIn')}
           </Typography>
           <Box
             component="form"
@@ -226,7 +228,7 @@ const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
               required
               fullWidth
               id="username"
-              label="Username"
+              label={t('login.username')}
               name="username"
               autoComplete="username"
               autoFocus
@@ -247,7 +249,7 @@ const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
               required
               fullWidth
               name="password"
-              label="Password"
+              label={t('login.password')}
               type={showPassword ? "text" : "password"}
               id="password"
               autoComplete="current-password"
@@ -283,7 +285,7 @@ const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
               style={{ backgroundColor: COLORS.green3 }}
               sx={{ mt: 3, mb: 2, py: 1.5 }}
             >
-              Login
+              {t('login.loginButton')}
             </Button>
           </Box>
         </Box>

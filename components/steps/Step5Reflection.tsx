@@ -3,6 +3,7 @@ import { Box, Typography, TextField, Button, Paper, Chip } from "@mui/material";
 import { AppProps } from "../../types";
 import MicIcon from "@mui/icons-material/Mic";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import { useLanguage } from "../LanguageContext";
 import styled from "styled-components";
 import { COLORS } from "../../constants";
 
@@ -20,6 +21,8 @@ const Step5Reflection: React.FC<AppProps> = ({
   onNext,
   onBack,
 }) => {
+  const { t } = useLanguage();
+
   return (
     <Box
       sx={{ display: "flex", flexDirection: "column", height: "100%", gap: 3 }}
@@ -35,10 +38,10 @@ const Step5Reflection: React.FC<AppProps> = ({
         }}
       >
         <Typography variant="h4" component="h1">
-          Deine Reflexion
+          {t("reflection.yourReflection")}
         </Typography>
         <Typography variant="h6">
-          Was hat dir der Dialog noch gezeigt ..
+          {t("reflection.whatElseShowed")}
         </Typography>
       </Paper>
 
@@ -49,8 +52,7 @@ const Step5Reflection: React.FC<AppProps> = ({
           gutterBottom
           sx={{ fontWeight: "bold" }}
         >
-          Teile deine Gedanken zu diesem Gespräch – was hat dich überrascht oder
-          was möchtest du dir merken?
+          {t("reflection.shareThoughts")}
         </Typography>
 
         <TextField
@@ -58,7 +60,7 @@ const Step5Reflection: React.FC<AppProps> = ({
           multiline
           rows={8}
           variant="outlined"
-          placeholder="Resonanz, Essenz, Takeaway..."
+          placeholder={t("reflection.resonanceEssence")}
           value={data.observerReflection}
           onChange={(e) => updateData({ observerReflection: e.target.value })}
           sx={{
@@ -88,10 +90,10 @@ const Step5Reflection: React.FC<AppProps> = ({
           >
             <MicIcon />
             <Typography fontWeight="500">
-              ... oder mach eine Audioaufnahme
+              {t("reflection.audioRecording")}
             </Typography>
           </Box>
-          <Chip label="Soon" variant="outlined" />
+          <Chip label={t("common.soon")} variant="outlined" />
         </Paper>
 
         <Typography
@@ -99,7 +101,7 @@ const Step5Reflection: React.FC<AppProps> = ({
           color="text.secondary"
           sx={{ mt: 2, fontStyle: "italic" }}
         >
-          mit größeren Zusammenhängen zu verknüpfen
+          {t("reflection.connectContexts")}
         </Typography>
       </Box>
 
@@ -112,14 +114,14 @@ const Step5Reflection: React.FC<AppProps> = ({
         }}
       >
         <StyledButton variant="text" onClick={onBack}>
-          Zurück
+          {t("dialogue.back")}
         </StyledButton>
         <StyledButton
           variant="contained"
           onClick={onNext}
           endIcon={<ArrowForwardIcon />}
         >
-          Weiter
+          {t("dialogue.next")}
         </StyledButton>
       </Box>
     </Box>
