@@ -1,11 +1,10 @@
 import React from "react";
 import { Box, Typography, Button, Paper } from "@mui/material";
 import { AppProps } from "../../types";
+import {COLORS} from "../../constants"; 
 
 const ThankYou: React.FC<AppProps> = ({ onRestart, data }) => {
-  console.log("Submitting Data: ", data);
   const initiativeCount = data.selectedInitiatives.length;
-  console.log("initiativeCount", initiativeCount);
 
   return (
     <Box
@@ -30,11 +29,11 @@ const ThankYou: React.FC<AppProps> = ({ onRestart, data }) => {
       <Paper
         elevation={0}
         sx={{
-          bgcolor: "primary.main",
-          color: "primary.contrastText",
+          bgcolor: COLORS.green2,
+          color: COLORS.brown2,
           p: { xs: 3, sm: 4 },
           width: "100%",
-          border: "1.5px solid #18181B", // Dark border as in sketch
+          border: "2px solid #18181B", // Dark border as in sketch
           borderRadius: 2,
         }}
       >
@@ -78,11 +77,11 @@ const ThankYou: React.FC<AppProps> = ({ onRestart, data }) => {
           width: "100%",
           maxWidth: { xs: "100%", sm: 400 },
           mb: 2,
-          border: "2px solid #FF3333",
-          color: "#FF3333",
+          border: `2px solid ${COLORS.red2}`,
+          color: `${COLORS.red2}`,
           "&:hover": {
-            bgcolor: "#FF3333",
-            color: "white",
+            bgcolor: `${COLORS.primary}`,
+            color: `${COLORS.white2}`,
           },
         }}
         onClick={() => alert("Deep Dive functionality coming soon!")}
@@ -98,6 +97,8 @@ const ThankYou: React.FC<AppProps> = ({ onRestart, data }) => {
           width: "100%",
           maxWidth: { xs: "100%", sm: 400 },
           border: "1.5px solid #18181B",
+          backgroundColor: COLORS.green2,
+          color: COLORS.brown2,
         }}
       >
         Nächster Dialog

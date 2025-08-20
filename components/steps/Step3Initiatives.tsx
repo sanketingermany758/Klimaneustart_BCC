@@ -11,10 +11,11 @@ import {
 import Grid from "@mui/material/Unstable_Grid2";
 import { QRCodeCanvas } from "qrcode.react";
 import { AppProps } from "../../types";
-import { INTEREST_AREAS2, INITIATIVES } from "../../constants";
+import { INTEREST_AREAS2, INITIATIVES, COLORS } from "../../constants";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { saveConversation } from "../../services/conversationService";
+import styled from "styled-components";
 
 const modalStyle = {
   position: "absolute" as "absolute",
@@ -33,6 +34,29 @@ const modalStyle = {
 const PUBLIC_QR_BASE =
   typeof window !== "undefined" ? window.location.origin : "";
 
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  gap: 24px;
+`;
+
+const StyledPaper = styled(Paper)`
+  padding: 16px;
+  background-color: ${COLORS.primary_green};
+  color: ${COLORS.white2};
+  border: 2px solid ${COLORS.green6};
+  text-align: center;
+`;
+
+const StyledButton = styled(Button)`
+  background-color: ${COLORS.primary_background};
+  color: ${COLORS.heading};
+  &:hover {
+    background-color: ${COLORS.button_background_yellow};
+  }
+`;
+
 const Step3Initiatives: React.FC<AppProps> = ({
   data,
   updateData,
@@ -42,7 +66,6 @@ const Step3Initiatives: React.FC<AppProps> = ({
   const [qrCodeValue, setQrCodeValue] = useState<string | null>(null);
   const [showInitiatives, setShowInitiatives] = useState(false);
   const [isSavingDraft, setIsSavingDraft] = useState(false);
-  console.log("UUID=", data.uuid);
 
   const handleLocalBack = () => {
     if (showInitiatives) setShowInitiatives(false);
@@ -93,8 +116,8 @@ const Step3Initiatives: React.FC<AppProps> = ({
         elevation={0}
         sx={{
           p: { xs: 2, sm: 4 },
-          bgcolor: "info.main",
-          color: "info.contrastText",
+          bgcolor: COLORS.blue1,
+          color: COLORS.white2,
           borderRadius: 2,
           textAlign: "center",
         }}
@@ -114,7 +137,7 @@ const Step3Initiatives: React.FC<AppProps> = ({
                 variant="outlined"
                 sx={{
                   height: "100%",
-                  borderColor: isSelected ? "primary.main" : "grey.300",
+                  borderColor: isSelected ? COLORS.button_background_yellow : COLORS.grey2,
                   borderWidth: 2,
                 }}
               >
@@ -127,7 +150,7 @@ const Step3Initiatives: React.FC<AppProps> = ({
                     color={isSelected ? "primary" : "action"}
                   />
                   <Typography variant="h6">{interest.name}</Typography>
-                  <Typography variant="body2" color="text.secondary">
+                  <Typography variant="body2" color={COLORS.heading}>
                     {interest.description}
                   </Typography>
                 </CardActionArea>
@@ -144,21 +167,21 @@ const Step3Initiatives: React.FC<AppProps> = ({
           mt: "auto",
         }}
       >
-        <Button variant="text" onClick={onBack}>
+        <StyledButton variant="text" onClick={onBack}>
           Back
-        </Button>
+        </StyledButton>
         <Box>
-          <Button variant="text" onClick={handleSkip} sx={{ mr: 2 }}>
+          <StyledButton variant="text" onClick={handleSkip} sx={{ mr: 2 }}>
             Skip
-          </Button>
-          <Button
+          </StyledButton>
+          <StyledButton
             variant="contained"
             onClick={() => setShowInitiatives(true)}
             disabled={data.interestAreas.length === 0}
             endIcon={<ArrowForwardIcon />}
           >
             Find Initiatives
-          </Button>
+          </StyledButton>
         </Box>
       </Box>
     </Box>
@@ -166,13 +189,13 @@ const Step3Initiatives: React.FC<AppProps> = ({
 
   const renderInitiativeList = () => (
     <Box>
-      <Button
+      <StyledButton
         onClick={handleLocalBack}
         startIcon={<ArrowBackIcon />}
         sx={{ mb: 2 }}
       >
         Change Interests
-      </Button>
+      </StyledButton>
       <Typography variant="h4" gutterBottom>
         Relevant Initiatives{" "}
         {data.districts.length > 0 && `in ${data.districts.join(", ")}`}
@@ -186,8 +209,8 @@ const Step3Initiatives: React.FC<AppProps> = ({
                 key={initiative.id}
                 variant="outlined"
                 sx={{
-                  borderColor: isSelected ? "info.main" : "grey.300",
-                  borderWidth: 2,
+                  borderColor: isSelected ? COLORS.blue2 : COLORS.grey2,
+                  borderWidth: 3,
                   borderRadius: 2,
                 }}
               >
@@ -205,7 +228,7 @@ const Step3Initiatives: React.FC<AppProps> = ({
                     <Typography variant="h6" component="div">
                       {initiative.name}
                     </Typography>
-                    <Typography variant="body2" color="text.secondary">
+                    <Typography variant="body2" color={COLORS.heading}>
                       {initiative.description}
                     </Typography>
                   </CardActionArea>
@@ -233,7 +256,7 @@ const Step3Initiatives: React.FC<AppProps> = ({
             );
           })
         ) : (
-          <Typography color="text.secondary" fontStyle="italic">
+          <Typography color={COLORS.heading} fontStyle="italic">
             No initiatives match the current filters.
           </Typography>
         )}
@@ -275,22 +298,22 @@ const Step3Initiatives: React.FC<AppProps> = ({
         </Card>
       </Box>
       <Box sx={{ display: "flex", justifyContent: "space-between", pt: 2 }}>
-        <Button variant="text" onClick={handleLocalBack}>
+        <StyledButton variant="text" onClick={handleLocalBack}>
           Back
-        </Button>
-        <Button
+        </StyledButton>
+        <StyledButton
           variant="contained"
           onClick={onNext}
           endIcon={<ArrowForwardIcon />}
         >
           Next
-        </Button>
+        </StyledButton>
       </Box>
     </Box>
   );
 
   return (
-    <Box>
+    <Container>
       {!showInitiatives ? renderInterestSelection() : renderInitiativeList()}
       <Modal open={!!qrCodeValue} onClose={() => setQrCodeValue(null)}>
         <Box sx={modalStyle}>
@@ -309,7 +332,7 @@ const Step3Initiatives: React.FC<AppProps> = ({
           </Button>
         </Box>
       </Modal>
-    </Box>
+    </Container>
   );
 };
 

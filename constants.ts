@@ -21,6 +21,7 @@ import SchoolIcon from "@mui/icons-material/School";
 import GavelIcon from "@mui/icons-material/Gavel";
 import PeopleIcon from "@mui/icons-material/People";
 import DevicesIcon from "@mui/icons-material/Devices";
+import { red } from "@mui/material/colors";
 
 export const STEPS: Step[] = [
   { id: StepId.Welcome, title: "Welcome" },
@@ -31,6 +32,7 @@ export const STEPS: Step[] = [
   { id: StepId.Consent, title: "Data Consent" },
   { id: StepId.Reflection, title: "Observer Reflection" },
   { id: StepId.Metrics, title: "Observer Reflection Metrics" },
+  { id: StepId.reflectionDistrict, title: "Select Reflection Districts" },
   { id: StepId.Summary, title: "Summary" },
 ];
 
@@ -51,22 +53,6 @@ export const INITIAL_CONVERSATION_DATA: ConversationData = {
   numPeople: 2,
   duration: 30,
 };
-
-// export const INITIAL_CONVERSATION_DATA: ConversationData = {
-//     mainInterest: '',
-//     livableCity: '',
-//     notes: '',
-//     topicDetails: {},
-//     districts: [],
-//     selectedInitiatives: [],
-//     interestAreas: [],
-//     interestDistricts: [],
-//     shareContact: false,
-//     isAnonymous: true,
-//     saveDialog: true,
-//     sendCopy: false,
-//     saveMinimal: false,
-// };
 
 export const CONTACT_INFO: ContactInfo = {
   firstName: "",
@@ -104,18 +90,6 @@ export const TOPIC_DEFINITIONS: Topic[] = [
     icon: HouseIcon,
     subGroups: [
       {
-        id: "transport",
-        name: "Transport",
-        options: [
-          { id: "costs", name: "Costs" },
-          { id: "electric_car", name: "Electric Car" },
-          { id: "bicycle", name: "Bicycle" },
-          { id: "parking", name: "Parking" },
-          { id: "public_transport", name: "Public Transport (ÖPNV)" },
-          { id: "health", name: "Health (Accidents, Air Quality)" },
-        ],
-      },
-      {
         id: "building_transition",
         name: "Building Transition",
         options: [
@@ -130,7 +104,14 @@ export const TOPIC_DEFINITIONS: Topic[] = [
           { id: "wood", name: "Wood" },
         ],
       },
-      {
+    ],
+  },
+  {
+    id: "wohnen_warmewende",
+    name: "Wohnen/Wärmewende",
+    icon: ThermostatIcon,
+    subGroups: [
+       {
         id: "heating_transition",
         name: "Heating Transition",
         options: [
@@ -144,6 +125,32 @@ export const TOPIC_DEFINITIONS: Topic[] = [
           { id: "homeownership", name: "Homeownership" },
         ],
       },
+    ],
+  },
+  {
+    id: "mobilitat",
+    name: "Mobilität",
+    icon: DirectionsCarIcon,
+    subGroups: [
+      {
+        id: "transport",
+        name: "Transport",
+        options: [
+          { id: "costs", name: "Costs" },
+          { id: "electric_car", name: "Electric Car" },
+          { id: "bicycle", name: "Bicycle" },
+          { id: "parking", name: "Parking" },
+          { id: "public_transport", name: "Public Transport (ÖPNV)" },
+          { id: "health", name: "Health (Accidents, Air Quality)" },
+        ],
+      },
+    ],
+  },
+  {
+    id: "klimaanpassung",
+    name: "Klimaanpassung",
+    icon: ParkIcon,
+    subGroups: [
       {
         id: "climate_adaptation",
         name: "Climate Adaptation",
@@ -154,21 +161,6 @@ export const TOPIC_DEFINITIONS: Topic[] = [
         ],
       },
     ],
-  },
-  {
-    id: "wohnen_warmewende",
-    name: "Wohnen/Wärmewende",
-    icon: ThermostatIcon,
-  },
-  {
-    id: "mobilitat",
-    name: "Mobilität",
-    icon: DirectionsCarIcon,
-  },
-  {
-    id: "klimaanpassung",
-    name: "Klimaanpassung",
-    icon: ParkIcon,
   },
   {
     id: "sonstiges_notizen",
@@ -617,6 +609,10 @@ export const COLORS = {
   green7: "#4cad6c",
   green8: "#4cac6d",
   green9: "#93c47D",
+  green10: "#b6d7a8", // light green
+  green11: "#DAFFD6", // very light green
+  green12: "#e6f2e6", // very very light green
+  green13: "#f2f9f2", // almost white green
   button_background_yellow: "#FBBF24",
   button_border_yellow: "#F59E0B",
   primary: "#fc2a1d",
@@ -629,6 +625,10 @@ export const COLORS = {
   red6: "#dc3433",
   red7: "#dd3433",
   red8: "#fb9993",
+  red9: "#fbb2b0", // light red
+  red10: "#fcd6d5", // very light red 
+  red11: "#fdf2f2", // almost white red
+  brown0: "#8b1813", // dark brown
   brown1: "#8b1813",
   brown2: "#7d150e", // steps color
   blue1: "#0c328a",
@@ -636,4 +636,9 @@ export const COLORS = {
   blue3: "#35348c",
   blue4: "#758bbd",
   blue5: "#9fc5f8",
+  blue6: "#b0c4de", // light blue
+  blue7: "#c0d4e8",
+  blue8: "#D9E8FC"
 };
+
+export { StepId };

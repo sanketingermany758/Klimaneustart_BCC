@@ -57,6 +57,23 @@ const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
     }
   };
 
+  const customTextFieldStyles = {
+    "& .MuiFilledInput-root": {
+      backgroundColor: COLORS.white2,
+      "&:hover": {
+        backgroundColor: COLORS.white3,
+      },
+      "&.Mui-focused": {
+        backgroundColor: COLORS.white2,
+        borderColor: COLORS.brown2,
+        boxShadow: `0 0 0 2px ${COLORS.brown2}`,
+      },
+    },
+    "& .MuiInputLabel-root.Mui-focused": {
+      color: COLORS.brown2,
+    },
+  };
+
   return (
     <Grid container component="main" sx={{ height: "100vh" }}>
       {/* Branding Section */}
@@ -95,19 +112,19 @@ const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
             Klimaneustart Berlin
           </Typography>
         </Box>
-        <Typography variant="h4" color="text.secondary" sx={{ mb: 4 }}>
+        <Typography variant="h4" color={COLORS.red2} sx={{ mb: 4 }}>
           Sag doch mal,Berlin
         </Typography>
         <Box
           sx={{
             height: "2px",
             width: "40vw",
-            backgroundColor: COLORS.green3,
-            opacity: 0.5,
+            backgroundColor: COLORS.green2,
+            opacity: 1,
             borderRadius: "2px",
           }}
         />
-        <Typography variant="h6" color="text.secondary" sx={{ mb: 4 }}>
+        <Typography variant="h6" color={COLORS.green2} sx={{ mb: 4 }}>
           Hören, Reden, Mitgestalten
         </Typography>
       </Grid>
@@ -223,6 +240,7 @@ const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
                   </InputAdornment>
                 ),
               }}
+              sx={customTextFieldStyles}
             />
             <TextField
               margin="normal"
@@ -255,6 +273,7 @@ const Login: React.FC<LoginProps> = ({ onLoginSuccess }) => {
                   </InputAdornment>
                 ),
               }}
+              sx={customTextFieldStyles}
             />
             <Button
               type="submit"

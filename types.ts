@@ -9,6 +9,7 @@ export enum StepId {
   Consent = "consent",
   Reflection = "reflection",
   Metrics = "metrics",
+  reflectionDistrict = "reflectionDistrict",
   Summary = "summary",
 }
 

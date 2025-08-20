@@ -26,7 +26,6 @@ export const useStepNavigation = () => {
     setStep2View,
     restart
   } = useAppContext();
-  console.log(currentStep,"currentStep");
   return {
     currentStep,
     onNext: goToNext,

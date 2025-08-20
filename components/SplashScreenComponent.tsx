@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Box, Typography, Fade, keyframes } from "@mui/material";
+import { COLORS } from "../constants";
 
 let logo = "/icons/logo_actual_square.png";
 
@@ -57,7 +58,7 @@ const SplashScreenComponent: React.FC<SplashScreenProps> = ({ onFinish }) => {
       >
         <Fade in={textVisible} timeout={1000}>
           <Box sx={{ textAlign: "center" }}>
-            <Typography variant="h4" component="h1" fontWeight="bold">
+            <Typography variant="h4" component="h1" fontWeight="bold" color={COLORS.red2}>
               Sag doch mal, Berlin
             </Typography>
           </Box>
@@ -76,7 +77,7 @@ const SplashScreenComponent: React.FC<SplashScreenProps> = ({ onFinish }) => {
         />
         <Fade in={textVisible} timeout={1000}>
           <Box sx={{ textAlign: "center" }}>
-            <Typography variant="h6" color="text.secondary">
+            <Typography variant="h6" color={COLORS.green2}>
               Hören. Reden. Mitgestalten
             </Typography>
           </Box>

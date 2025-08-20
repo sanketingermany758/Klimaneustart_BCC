@@ -21,10 +21,10 @@ interface AppContextType {
   updateReflection: (data: Partial<DeineReflection>) => void;
 
   // Navigation
-  goToNext: () => void;
-  goToPrevious: () => void;
   setStep2View: (view: "district" | "topics") => void;
   restart: () => void;
+  setCurrentStep: (step: number) => void; // Add this line
+  updateCurrentStep: (step: number) => void; // Add the new function to the interface
 }
 
 // ✅ Correctly typed context
@@ -68,20 +68,17 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({
     setReflection((prev) => ({ ...prev, ...newData }));
   }, []);
 
-  const goToNext = useCallback(() => {
-    setCurrentStep((prev) => Math.min(prev + 1, STEPS.length));
-  }, []);
-
-  const goToPrevious = useCallback(() => {
-    setCurrentStep((prev) => Math.max(prev - 1, 0));
-  }, []);
-
   const restart = useCallback(() => {
     setConversation(INITIAL_CONVERSATION_DATA);
     setContactInfo(CONTACT_INFO);
     setReflection(DEINE_REFLECTION);
     setStep2View("district");
     setCurrentStep(0);
+  }, []);
+
+  // Add a function to update the current step
+  const updateCurrentStep = useCallback((step: number) => {
+    setCurrentStep(step);
   }, []);
 
   const contextValue: AppContextType = {
@@ -93,10 +90,10 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({
     updateConversation,
     updateContactInfo,
     updateReflection,
-    goToNext,
-    goToPrevious,
     setStep2View,
     restart,
+    setCurrentStep, // Add this to the context
+    updateCurrentStep, // Add this to the context
   };
 
   return (

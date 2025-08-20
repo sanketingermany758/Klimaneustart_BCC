@@ -4,6 +4,38 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { AppProps } from "../../types";
 import { BERLIN_DISTRICTS } from "../../constants";
 import { getString } from "../../stringutils";
+import styled from "styled-components";
+import { COLORS } from "../../constants";
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  gap: 24px;
+`;
+
+const StyledPaper = styled(Paper)`
+  padding: 16px;
+  background-color: ${COLORS.blue1};
+  color: ${COLORS.white2};
+  border: 2px solid ${COLORS.green6};
+  text-align: center;
+`;
+
+const StyledButton = styled(Button)`
+  background-color: ${COLORS.white2};
+  color: ${COLORS.blue1};
+  &:hover {
+    background-color: ${COLORS.button_background_yellow};
+    color: ${COLORS.brown2};
+    opacity: 0.9;
+  },
+     &:focus {
+    background-color: ${COLORS.button_background_yellow};
+    color: ${COLORS.brown2};
+    opacity: 0.9;
+  }
+`;
 
 const Step5District: React.FC<AppProps> = ({
   data,
@@ -20,21 +52,13 @@ const Step5District: React.FC<AppProps> = ({
       ? data.interestDistricts.filter((d) => d !== districtName)
       : [...data.interestDistricts, districtName];
     updateData({ interestDistricts: newDistricts });
-    console.log("new districts", newDistricts);
   };
 
   return (
     <Box
       sx={{ display: "flex", flexDirection: "column", height: "100%", gap: 3 }}
     >
-      <Box
-        sx={{
-          p: { xs: 2, sm: 4 },
-          bgcolor: "info.main",
-          color: "info.contrastText",
-          borderRadius: 2,
-          textAlign: "center",
-        }}
+      <StyledPaper elevation={0}
       >
         <Typography variant="h4" component="h1" gutterBottom>
           {getString("dialogue.headerTitle")}
@@ -42,11 +66,11 @@ const Step5District: React.FC<AppProps> = ({
         <Typography variant="h6">
           {getString("dialogue.headerSubtitle")}
         </Typography>
-      </Box>
+      </StyledPaper>
       <Grid container spacing={2}>
         {BERLIN_DISTRICTS.map((district) => (
           <Grid item xs={6} sm={4} md={3} key={district}>
-            <Button
+            <StyledButton
               fullWidth
               variant={
                 data.interestDistricts.includes(district)
@@ -57,18 +81,18 @@ const Step5District: React.FC<AppProps> = ({
               sx={{ height: "100%" }}
             >
               {district}
-            </Button>
+            </StyledButton>
           </Grid>
         ))}
       </Grid>
       <Box sx={{ display: "flex", justifyContent: "flex-end", pt: 2 }}>
-        <Button
+        <StyledButton
           variant="contained"
           onClick={() => onNext()}
           endIcon={<ArrowForwardIcon />}
         >
           Weiter
-        </Button>
+        </StyledButton>
       </Box>
     </Box>
   );

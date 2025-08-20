@@ -1,7 +1,8 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Box, Paper } from "@mui/material";
 import { ConversationData, StepId } from "../types";
-import { INITIAL_CONVERSATION_DATA, STEPS } from "../constants";
+import { INITIAL_CONVERSATION_DATA, STEPS, COLORS } from "../constants";
+import { useAppContext } from "../AppContext";
 
 import StepTracker from "./StepTracker";
 import Step0Welcome from "./steps/Step0Welcome";
@@ -16,33 +17,37 @@ import Step5District from "./steps/Step5Districts";
 import Step6Summary from "./steps/Step6Summary";
 import ThankYou from "./steps/ThankYou";
 
+  // const [currentStep, setCurrentStep] = useState<number>(0);
+
+  // const [step2View, setStep2View] = useState<"district" | "topics">("district");
+
+
 const MainApp: React.FC = () => {
-  const [currentStep, setCurrentStep] = useState<number>(0);
+  const { currentStep, updateCurrentStep, conversation, updateConversation } = useAppContext();
   const [conversationData, setConversationData] = useState<ConversationData>({
     ...INITIAL_CONVERSATION_DATA,
     uuid: crypto.randomUUID(),
   });
-  const [step2View, setStep2View] = useState<"district" | "topics">("district");
-
+const [step2View, setStep2View] = useState<"district" | "topics">("district");
   const handleNext = useCallback(() => {
-    setCurrentStep((prev) => Math.min(prev + 1, STEPS.length));
-  }, []);
+    updateCurrentStep(Math.min(currentStep + 1, STEPS.length));
+  }, [currentStep, updateCurrentStep]);
 
   const handleBack = useCallback(() => {
-    setCurrentStep((prev) => Math.max(prev - 1, 0));
-  }, []);
+  updateCurrentStep(Math.max(currentStep - 1, 0)); // Ensure it doesn't go below 0
+}, [currentStep, updateCurrentStep]);
 
   const updateData = useCallback((data: Partial<ConversationData>) => {
     setConversationData((prev) => ({ ...prev, ...data }));
   }, []);
 
-  const restart = useCallback(() => {
+const restart = useCallback(() => {
     setConversationData({
       ...INITIAL_CONVERSATION_DATA,
       uuid: crypto.randomUUID(),
     });
     setStep2View("district");
-    setCurrentStep(0);
+    updateCurrentStep(0);
   }, []);
 
   // Progressive local draft save
@@ -60,7 +65,7 @@ const MainApp: React.FC = () => {
   const navigateToStep = useCallback((stepId: StepId) => {
     const stepIndex = STEPS.findIndex((step) => step.id === stepId);
     if (stepIndex >= 0) {
-      setCurrentStep(stepIndex);
+      updateCurrentStep(stepIndex);
     }
   }, []);
 
@@ -69,7 +74,7 @@ const MainApp: React.FC = () => {
 
     const commonProps = {
       data: conversationData,
-      updateData,
+      updateData: updateConversation,
       onNext: handleNext,
       onBack: handleBack,
       onRestart: restart,
@@ -93,16 +98,18 @@ const MainApp: React.FC = () => {
         return <Step5Reflection {...commonProps} />;
       case StepId.Metrics:
         return <Step5Metrics {...commonProps} />;
+        case StepId.reflectionDistrict:
+        return <Step5District {...commonProps} />;
       case StepId.Summary:
         return <Step6Summary {...commonProps} onNext={handleNext} />;
       default:
         if (currentStep >= STEPS.length) {
           return <ThankYou {...commonProps} />;
         }
-        // Fallback for step 0
         return <Step0Welcome onNext={handleNext} />;
     }
   };
+
 
   return (
     <Paper
@@ -112,6 +119,7 @@ const MainApp: React.FC = () => {
         minHeight: "80vh",
         display: "flex",
         flexDirection: "column",
+        backgroundColor: currentStep < 3 ? COLORS.grey1 : COLORS.green10,
       }}
     >
       {currentStep > 0 && currentStep < STEPS.length && (

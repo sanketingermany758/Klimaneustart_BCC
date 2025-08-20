@@ -13,6 +13,8 @@ import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 import { QRCodeCanvas } from "qrcode.react";
 import { AppProps } from "../../types";
 import QrCode2Icon from "@mui/icons-material/QrCode2";
+import { COLORS } from "../../constants";
+import styled from "styled-components";
 
 const modalStyle = {
   position: "absolute" as "absolute",
@@ -26,6 +28,14 @@ const modalStyle = {
   p: 4,
   textAlign: "center",
 };
+
+const StyledButton = styled(Button)`
+  background-color: ${COLORS.primary_background};
+  color: ${COLORS.heading};
+  &:hover {
+    background-color: ${COLORS.button_background_yellow};
+  }
+`;
 
 const Step4Consent: React.FC<AppProps> = ({
   data,
@@ -70,8 +80,8 @@ const Step4Consent: React.FC<AppProps> = ({
         elevation={0}
         sx={{
           p: { xs: 2, sm: 3 },
-          bgcolor: "info.main",
-          color: "info.contrastText",
+          bgcolor: COLORS.blue1,
+          color: COLORS.white2,
           borderRadius: 2,
           textAlign: "center",
         }}
@@ -85,7 +95,7 @@ const Step4Consent: React.FC<AppProps> = ({
       </Paper>
 
       <ToggleButtonGroup
-        color="primary"
+        color={contactPreference === "anonymous" ? "error" : "success"}
         value={contactPreference}
         exclusive
         onChange={handlePreferenceChange}
@@ -170,12 +180,12 @@ const Step4Consent: React.FC<AppProps> = ({
           mt: "auto",
         }}
       >
-        <Button variant="text" onClick={onBack}>
+        <StyledButton variant="text" onClick={onBack}>
           Zurück
-        </Button>
-        <Button variant="contained" onClick={onNext}>
+        </StyledButton>
+        <StyledButton variant="contained" onClick={onNext}>
           Weiter
-        </Button>
+        </StyledButton>
       </Box>
 
       <Modal open={showQR} onClose={() => setShowQR(false)}>

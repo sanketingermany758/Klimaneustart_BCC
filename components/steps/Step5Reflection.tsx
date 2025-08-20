@@ -3,6 +3,16 @@ import { Box, Typography, TextField, Button, Paper, Chip } from "@mui/material";
 import { AppProps } from "../../types";
 import MicIcon from "@mui/icons-material/Mic";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import styled from "styled-components";
+import { COLORS } from "../../constants";
+
+const StyledButton = styled(Button)`
+  background-color: ${COLORS.primary_background};
+  color: ${COLORS.heading};
+  &:hover {
+    background-color: ${COLORS.button_background_yellow};
+  }
+`;
 
 const Step5Reflection: React.FC<AppProps> = ({
   data,
@@ -18,8 +28,8 @@ const Step5Reflection: React.FC<AppProps> = ({
         elevation={0}
         sx={{
           p: { xs: 2, sm: 3 },
-          bgcolor: "info.main",
-          color: "info.contrastText",
+          bgcolor: COLORS.blue1,
+          color: COLORS.white2,
           borderRadius: 2,
           textAlign: "center",
         }}
@@ -101,16 +111,16 @@ const Step5Reflection: React.FC<AppProps> = ({
           mt: "auto",
         }}
       >
-        <Button variant="text" onClick={onBack}>
+        <StyledButton variant="text" onClick={onBack}>
           Zurück
-        </Button>
-        <Button
+        </StyledButton>
+        <StyledButton
           variant="contained"
           onClick={onNext}
           endIcon={<ArrowForwardIcon />}
         >
           Weiter
-        </Button>
+        </StyledButton>
       </Box>
     </Box>
   );

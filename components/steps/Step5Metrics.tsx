@@ -12,8 +12,18 @@ import {
 import Grid from "@mui/material/Unstable_Grid2";
 import { AppProps } from "../../types";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import { COLORS } from "../../constants";
+import styled from "styled-components";
 
 type ParticipantType = "single" | "family" | "couple";
+
+const StyledButton = styled(Button)`
+  background-color: ${COLORS.primary_background};
+  color: ${COLORS.heading};
+  &:hover {
+    background-color: ${COLORS.button_background_yellow};
+  }
+`;
 
 const Step5Metrics: React.FC<AppProps> = ({
   data,
@@ -34,8 +44,8 @@ const Step5Metrics: React.FC<AppProps> = ({
         elevation={0}
         sx={{
           p: { xs: 2, sm: 3 },
-          bgcolor: "info.main",
-          color: "info.contrastText",
+          bgcolor: COLORS.blue1,
+          color: COLORS.white2,
           borderRadius: 2,
           textAlign: "center",
         }}
@@ -66,14 +76,30 @@ const Step5Metrics: React.FC<AppProps> = ({
               },
               min: 1,
             }}
-            variant="outlined"
+            variant="filled"
             sx={{
               "& .MuiOutlinedInput-root": {
                 height: "100px",
                 alignItems: "center",
                 justifyContent: "center",
               },
-            }}
+              
+          "& .MuiFilledInput-root": {
+            backgroundColor: COLORS.white2,
+            "&:hover": {
+              backgroundColor: COLORS.white3,
+            },
+            "&.Mui-focused": {
+              backgroundColor: COLORS.white2,
+              borderColor: COLORS.brown2,
+              boxShadow: `0 0 0 2px ${COLORS.brown2}`,
+            },
+          },
+          "& .MuiInputLabel-root.Mui-focused": {
+            color: COLORS.brown2,
+          },
+        }}
+            
           />
         </Grid>
         <Grid xs={6}>
@@ -95,14 +121,30 @@ const Step5Metrics: React.FC<AppProps> = ({
               },
               min: 1,
             }}
-            variant="outlined"
+            variant="filled"
             sx={{
               "& .MuiOutlinedInput-root": {
                 height: "100px",
                 alignItems: "center",
                 justifyContent: "center",
               },
-            }}
+              
+          "& .MuiFilledInput-root": {
+            backgroundColor: COLORS.white2,
+            "&:hover": {
+              backgroundColor: COLORS.white3,
+            },
+            "&.Mui-focused": {
+              backgroundColor: COLORS.white2,
+              borderColor: COLORS.brown2,
+              boxShadow: `0 0 0 2px ${COLORS.brown2}`,
+            },
+          },
+          "& .MuiInputLabel-root.Mui-focused": {
+            color: COLORS.brown2,
+          },
+        }}
+          
           />
         </Grid>
       </Grid>
@@ -144,7 +186,24 @@ const Step5Metrics: React.FC<AppProps> = ({
         label="Standort.         soon"
         value={data.location || ""}
         onChange={(e) => updateData({ location: e.target.value })}
-        variant="outlined"
+        variant="filled"
+        disabled
+        sx={{
+          "& .MuiFilledInput-root": {
+            backgroundColor: COLORS.white2,
+            "&:hover": {
+              backgroundColor: COLORS.white3,
+            },
+            "&.Mui-focused": {
+              backgroundColor: COLORS.white2,
+              borderColor: COLORS.brown2,
+              boxShadow: `0 0 0 2px ${COLORS.brown2}`,
+            },
+          },
+          "& .MuiInputLabel-root.Mui-focused": {
+            color: COLORS.brown2,
+          },
+        }}
       />
 
       <Box
@@ -155,16 +214,16 @@ const Step5Metrics: React.FC<AppProps> = ({
           mt: "auto",
         }}
       >
-        <Button variant="text" onClick={onBack}>
+        <StyledButton variant="text" onClick={onBack}>
           Zurück
-        </Button>
-        <Button
+        </StyledButton>
+        <StyledButton
           variant="contained"
           onClick={onNext}
           endIcon={<ArrowForwardIcon />}
         >
           Weiter
-        </Button>
+        </StyledButton>
       </Box>
     </Box>
   );

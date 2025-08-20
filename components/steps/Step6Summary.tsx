@@ -18,13 +18,24 @@ import EditIcon from "@mui/icons-material/Edit";
 import { AppProps, StepId } from "../../types";
 import { INITIATIVES, STEPS } from "../../constants";
 import { saveConversation } from "../../services/conversationService";
-
+import styled from "styled-components";
+import { COLORS } from "../../constants";
 interface SummaryItemProps {
   label: string;
   value: React.ReactNode;
   onEdit?: () => void;
   editable?: boolean;
 }
+
+
+const StyledButton = styled(Button)`
+  background-color: ${COLORS.primary_background};
+  color: ${COLORS.heading};
+  &:hover {
+    background-color: ${COLORS.button_background_yellow};
+  }
+`;
+
 
 const SummaryItem: React.FC<SummaryItemProps> = ({
   label,
@@ -73,6 +84,8 @@ const Step6Summary: React.FC<AppProps> = ({
   const [sendCopy, setSendCopy] = useState(false);
 
   const handleEdit = (stepId: StepId) => {
+    console.log(`Navigating to step: ${stepId}`);
+    
     if (navigateToStep) {
       navigateToStep(stepId);
     }
@@ -83,12 +96,10 @@ const Step6Summary: React.FC<AppProps> = ({
     setError("");
     try {
       const payload = { ...data, sendCopy, status: "completed" };
-      console.log("Payload: ", payload);
       const result = await saveConversation(payload);
-      console.log("Conversation saved:", result);
 
       if (sendCopy) {
-        console.log("User requested a copy. Triggering email service...");
+
       }
 
       onNext();
@@ -234,9 +245,9 @@ const Step6Summary: React.FC<AppProps> = ({
       )}
 
       <Box sx={{ display: "flex", justifyContent: "space-between", mt: 4 }}>
-        <Button variant="text" onClick={onBack}>
+        <StyledButton variant="text" onClick={onBack}>
           Back
-        </Button>
+        </StyledButton>
         <LoadingButton
           variant="contained"
           onClick={handleSubmit}

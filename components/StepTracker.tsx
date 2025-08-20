@@ -3,6 +3,7 @@ import { Box, Typography, MobileStepper, Button, useTheme, IconButton } from '@m
 import { Step } from '../types';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
+import { COLORS } from '../constants';
 
 interface StepTrackerProps {
     currentStep: number;
@@ -28,16 +29,31 @@ const StepTracker: React.FC<StepTrackerProps> = ({ currentStep, steps, onBack, o
                     backgroundColor: 'transparent',
                     '.MuiMobileStepper-progress': {
                         width: '100%',
+                        backgroundColor: `${COLORS.brown2}33`, // Brown with opacity
                     },
                 }}
                 backButton={
-                    <Button size="small" onClick={onBack} disabled={currentStep === 0}>
+                    <Button
+                        size="small"
+                        onClick={onBack}
+                        disabled={currentStep === 0}
+                        sx={{
+                            color: COLORS.brown2,
+                        }}
+                    >
                         <KeyboardArrowLeft />
                         Back
                     </Button>
                 }
                 nextButton={
-                    <IconButton onClick={onHelp} size="small" aria-label="help">
+                    <IconButton
+                        onClick={onHelp}
+                        size="small"
+                        aria-label="help"
+                        sx={{
+                            color: COLORS.brown2,
+                        }}
+                    >
                         <HelpOutlineIcon />
                     </IconButton>
                 }

@@ -2,7 +2,6 @@ import React from "react";
 import { Box, Typography, Button, IconButton } from "@mui/material";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import TrendingFlatIcon from "@mui/icons-material/TrendingFlat";
-import BottomNavigationBar from "../ui/BottomNavigationBar";
 import SchoolIcon from "@mui/icons-material/School"; // Placeholder for 'brain' icon
 
 let logo = "/icons/logo_actual_square.png";
@@ -12,10 +11,6 @@ interface Step0WelcomeProps {
 }
 
 const Step0Welcome: React.FC<Step0WelcomeProps> = ({ onNext }) => {
-  const handleTabChange = (tabName: "dialogue" | "dashboard") => {
-    console.log("Tab changed to:", tabName);
-  };
-
   return (
     <Box
       sx={{
@@ -72,11 +67,6 @@ const Step0Welcome: React.FC<Step0WelcomeProps> = ({ onNext }) => {
       >
         Starte den Dialog
       </Button>
-
-      <BottomNavigationBar
-        currentView={"dialogue"}
-        onTabChange={handleTabChange}
-      />
     </Box>
   );
 };

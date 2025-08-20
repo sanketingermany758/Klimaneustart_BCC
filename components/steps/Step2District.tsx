@@ -10,6 +10,38 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { AppProps } from "../../types";
 import { BERLIN_DISTRICTS } from "../../constants";
 import { getString } from "../../stringutils";
+import styled from "styled-components";
+import { COLORS } from "../../constants";
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  gap: 24px;
+`;
+
+const StyledPaper = styled(Paper)`
+  padding: 16px;
+  background-color: ${COLORS.blue1};
+  color: ${COLORS.white2};
+  border: 2px solid ${COLORS.green6};
+  text-align: center;
+`;
+
+const StyledButton = styled(Button)`
+  background-color: ${COLORS.white2};
+  color: ${COLORS.blue1};
+  &:hover {
+    background-color: ${COLORS.button_background_yellow};
+    color: ${COLORS.brown2};
+    opacity: 0.9;
+  },
+     &:focus {
+    background-color: ${COLORS.button_background_yellow};
+    color: ${COLORS.brown2};
+    opacity: 0.9;
+  }
+`;
 
 const Step2District: React.FC<AppProps> = ({
   data,
@@ -23,36 +55,28 @@ const Step2District: React.FC<AppProps> = ({
   };
 
   return (
-    <Box sx={{ display: "flex", flexDirection: "column", height: "100%", gap: 3 }}>
-      <Paper
-        elevation={0}
-        sx={{
-          p: { xs: 2, sm: 4 },
-          bgcolor: "info.main",
-          color: "info.contrastText",
-          borderRadius: 2,
-          textAlign: "center",
-        }}
-      >
+    <Container>
+      <StyledPaper elevation={0}>
         <Typography variant="h4" component="h1" gutterBottom>
           {getString("dialogue.headerTitle")}
         </Typography>
         <Typography variant="h6">
           {getString("dialogue.headerSubtitle")}
         </Typography>
-      </Paper>
+      </StyledPaper>
 
       <Grid container spacing={2}>
         {BERLIN_DISTRICTS.map((district) => (
           <Grid xs={6} sm={4} md={3} key={district}>
-            <Button
+            <StyledButton
               fullWidth
               variant={data.districts[0] === district ? "contained" : "outlined"}
               onClick={() => handleDistrictSelect(district)}
               sx={{ height: "100%" }}
+
             >
               {district}
-            </Button>
+            </StyledButton>
           </Grid>
         ))}
       </Grid>
@@ -61,15 +85,15 @@ const Step2District: React.FC<AppProps> = ({
         <Button variant="text" onClick={onBack}>
           Back
         </Button>
-        <Button
+        <StyledButton
           variant="contained"
           onClick={onNext}
           endIcon={<ArrowForwardIcon />}
         >
           {data.districts.length === 0 ? "Skip" : "Weiter"}
-        </Button>
+        </StyledButton>
       </Box>
-    </Box>
+    </Container>
   );
 };
 
