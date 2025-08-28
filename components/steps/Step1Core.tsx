@@ -15,9 +15,9 @@ const Step1Core: React.FC<AppProps> = ({ data, updateData, onNext }) => {
         elevation={0}
         sx={{
           p: { xs: 2, sm: 4 },
-          bgcolor: "info.main",
-          color: "info.contrastText",
-          border: "2px solid #93c47D",
+          bgcolor: "#e70000",
+          color: "#FFFFFF",
+          border: "2px solid #e70000",
         }}
       >
         <Typography variant="h4" component="h1" align="center" gutterBottom>
@@ -73,6 +73,7 @@ const Step1Core: React.FC<AppProps> = ({ data, updateData, onNext }) => {
           variant="contained"
           onClick={onNext}
           endIcon={<ArrowForwardIcon />}
+          sx={{ bgcolor: "#00bb70", "&:hover": { bgcolor: "#009960" } }}
         >
           weiter ...
         </Button>

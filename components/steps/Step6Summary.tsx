@@ -148,65 +148,83 @@ const Step6Summary: React.FC<AppProps> = ({
   };
 
   return (
-    <Box>
-      <Typography variant="h4" component="h1" gutterBottom>
-        Summary & Submission
+    <Box sx={{ bgcolor: "#C8E6C9", minHeight: "100vh", p: 2 }}>
+      {/* Header with back button and step indicator */}
+      <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
+        <Button 
+          onClick={onBack}
+          sx={{ mr: 2, color: "#333" }}
+        >
+          ← Back
+        </Button>
+        <Typography variant="body2" sx={{ ml: "auto", color: "#666" }}>
+          Step 9 of 9: Summary
+        </Typography>
+      </Box>
+      
+      <Typography variant="h4" component="h1" gutterBottom sx={{ color: "#333", mb: 3 }}>
+        Zusammenfassung
       </Typography>
-      <Paper variant="outlined">
+      
+      <Paper
+        elevation={0}
+        sx={{
+          bgcolor: "#FFFFFF",
+          borderRadius: 2,
+          p: 3,
+          mb: 3
+        }}
+      >
         <List dense>
           <SummaryItem
-            label="District"
-            value={data.districts.join(", ")}
+            label="Bezirk auswählen"
+            value={data.districts.join(", ") || "Not provided"}
             editable
             onEdit={() => handleEdit(StepId.District)}
           />
           <SummaryItem
             label="Topic Details"
-            value={renderTopicDetails()}
+            value={renderTopicDetails() || "Not provided"}
             editable
             onEdit={() => handleEdit(StepId.Topics)}
           />
           <SummaryItem
-            label="Selected Initiatives"
+            label="Initiativen"
             value={data.selectedInitiatives
               .map((id) => INITIATIVES.find((i) => i.id === id)?.name)
-              .join(", ")}
+              .join(", ") || "Not provided"}
             editable
             onEdit={() => handleEdit(StepId.Initiatives)}
           />
           <SummaryItem
-            label="Anonymous"
+            label="Anonym bleiben"
             value={data.isAnonymous ? "Yes" : "No"}
             editable
             onEdit={() => handleEdit(StepId.Consent)}
           />
           <SummaryItem
-            label="Contact Shared"
-            value={data.shareContact ? `Yes (${data.contactInfo})` : "No"}
+            label="Kontakt teilen"
+            value={data.shareContact ? `Yes (${data.contactInfo})` : "Not provided"}
             editable
             onEdit={() => handleEdit(StepId.Consent)}
           />
           <SummaryItem
-            label="Observer Reflection"
-            value={data.observerReflection}
+            label="Resonanz, Essenz, Takeaway..."
+            value={data.observerReflection || "Not provided"}
             editable
             onEdit={() => handleEdit(StepId.Reflection)}
           />
           <SummaryItem
-            label="Surprise"
-            value={data.surprise}
+            label="Deine Reflexion"
+            value={data.surprise || "Not provided"}
             editable
             onEdit={() => handleEdit(StepId.Reflection)}
           />
           <SummaryItem
-            label="Metrics"
-            value={`${data.numPeople} people, ${data.duration} minutes`}
+            label="Dauer (Min.)"
+            value={`${data.duration || 0} minutes`}
             editable
             onEdit={() => handleEdit(StepId.Metrics)}
-          />
-          <SummaryItem
-            label="Standort"
-            value={data.location || "Not provided"}
           />
         </List>
       </Paper>
@@ -233,16 +251,30 @@ const Step6Summary: React.FC<AppProps> = ({
         </Box>
       )}
 
-      <Box sx={{ display: "flex", justifyContent: "space-between", mt: 4 }}>
-        <Button variant="text" onClick={onBack}>
-          Back
+      <Box sx={{ display: "flex", justifyContent: "center", gap: 2, mt: 4 }}>
+        <Button
+          variant="contained"
+          sx={{ 
+            bgcolor: "#FFB74D", 
+            color: "#333",
+            "&:hover": { bgcolor: "#FFA726" },
+            minWidth: 120
+          }}
+        >
+          📧
         </Button>
         <LoadingButton
           variant="contained"
           onClick={handleSubmit}
           loading={isSubmitting}
+          sx={{ 
+            bgcolor: "#81C784", 
+            color: "#333",
+            "&:hover": { bgcolor: "#66BB6A" },
+            minWidth: 120
+          }}
         >
-          Submit Conversation
+          📊 Analytics Dashboard
         </LoadingButton>
       </Box>
     </Box>

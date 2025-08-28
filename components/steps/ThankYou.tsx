@@ -7,6 +7,11 @@ const ThankYou: React.FC<AppProps> = ({ onRestart, data }) => {
   const initiativeCount = data.selectedInitiatives.length;
   console.log("initiativeCount", initiativeCount);
 
+  const handleDashboard = () => {
+    // Navigate to dashboard - you can implement this based on your routing
+    window.location.href = '/dashboard'; // or use your router
+  };
+
   return (
     <Box
       sx={{
@@ -17,16 +22,39 @@ const ThankYou: React.FC<AppProps> = ({ onRestart, data }) => {
         py: { xs: 2, sm: 4 },
         height: "100%",
         gap: 3,
+        bgcolor: "#FFFFFF", // White background
       }}
     >
+      {/* Logo */}
       <Paper
         elevation={0}
         sx={{
-          bgcolor: "primary.main",
-          color: "primary.contrastText",
+          bgcolor: "#e70000",
+          color: "#FFFFFF",
+          p: 2,
+          borderRadius: 1,
+          mb: 2,
+        }}
+      >
+        <Typography variant="h6" sx={{ fontWeight: "bold" }}>
+          KLIMA
+        </Typography>
+        <Typography variant="h6" sx={{ fontWeight: "bold" }}>
+          NEU
+        </Typography>
+        <Typography variant="h6" sx={{ fontWeight: "bold" }}>
+          START
+        </Typography>
+      </Paper>
+
+      {/* Main Thank You Message */}
+      <Paper
+        elevation={0}
+        sx={{
+          bgcolor: "#00bb70",
+          color: "#FFFFFF",
           p: { xs: 3, sm: 4 },
           width: "100%",
-          border: "1.5px solid #18181B", // Dark border as in sketch
           borderRadius: 2,
         }}
       >
@@ -34,46 +62,42 @@ const ThankYou: React.FC<AppProps> = ({ onRestart, data }) => {
           Vielen Dank!
         </Typography>
         <Typography variant="h6" component="p">
-          Your response has been recorded and will contribute to community
-          insights
+          Ihre Antwort wurde aufgezeichnet und wird zu Erkenntnissen der Gemeinschaft beitragen
         </Typography>
       </Paper>
-      {/* This box is only shown if the user selected initiatives and is not anonymous */}
-      {initiativeCount > 0 && !data.isAnonymous && (
-        <Paper
-          variant="outlined"
+
+      <Box sx={{ flexGrow: 1 }} /> {/* Spacer */}
+
+      {/* Action Buttons */}
+      <Box sx={{ width: "100%", display: "flex", flexDirection: "column", gap: 2 }}>
+        <Button
+          onClick={handleDashboard}
+          variant="contained"
+          size="large"
           sx={{
-            p: 3,
             width: "100%",
-            borderColor: "text.primary",
-            borderWidth: 1.5,
-            borderRadius: 2,
+            bgcolor: "#e70000",
+            color: "#FFFFFF",
+            "&:hover": { bgcolor: "#cc0000" },
           }}
         >
-          <Typography variant="h6" sx={{ mb: 1, fontWeight: "bold" }}>
-            {`You're interested in ${initiativeCount} ${
-              initiativeCount === 1 ? "initiative" : "initiatives"
-            }!`}
-          </Typography>
-          <Typography variant="body1">
-            We will connect you with local opportunities soon!
-          </Typography>
-        </Paper>
-      )}
-      <Box sx={{ flexGrow: 1 }} /> {/* Spacer to push button to the bottom */}
-      <Button
-        onClick={onRestart}
-        variant="contained"
-        color="primary"
-        size="large"
-        sx={{
-          width: "100%",
-          maxWidth: { xs: "100%", sm: 400 },
-          border: "1.5px solid #18181B",
-        }}
-      >
-        Nächster Dialog
-      </Button>
+          Dashboard
+        </Button>
+        
+        <Button
+          onClick={onRestart}
+          variant="contained"
+          size="large"
+          sx={{
+            width: "100%",
+            bgcolor: "#00bb70",
+            color: "#FFFFFF",
+            "&:hover": { bgcolor: "#009960" },
+          }}
+        >
+          Nächster Dialog
+        </Button>
+      </Box>
     </Box>
   );
 };

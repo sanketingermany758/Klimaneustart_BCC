@@ -18,8 +18,8 @@ const Step5Reflection: React.FC<AppProps> = ({
         elevation={0}
         sx={{
           p: { xs: 2, sm: 3 },
-          bgcolor: "info.main",
-          color: "info.contrastText",
+          bgcolor: "#e70000",
+          color: "#FFFFFF",
           borderRadius: 2,
           textAlign: "center",
         }}
@@ -101,13 +101,18 @@ const Step5Reflection: React.FC<AppProps> = ({
           mt: "auto",
         }}
       >
-        <Button variant="text" onClick={onBack}>
+        <Button 
+          variant="contained" 
+          onClick={onBack}
+          sx={{ bgcolor: "#e70000", "&:hover": { bgcolor: "#cc0000" } }}
+        >
           Zurück
         </Button>
         <Button
           variant="contained"
           onClick={onNext}
           endIcon={<ArrowForwardIcon />}
+          sx={{ bgcolor: "#00bb70", "&:hover": { bgcolor: "#009960" } }}
         >
           Weiter
         </Button>

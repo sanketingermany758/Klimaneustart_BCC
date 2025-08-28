@@ -86,25 +86,42 @@ const Step3Initiatives: React.FC<AppProps> = ({
   }, [data.districts, data.interestAreas, showInitiatives]);
 
   const renderInterestSelection = () => (
-    <Box
-      sx={{ display: "flex", flexDirection: "column", height: "100%", gap: 3 }}
-    >
+    <Box sx={{ bgcolor: "#C8E6C9", minHeight: "100vh", p: 2 }}>
+      {/* Header with back button and step indicator */}
+      <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
+        <Button 
+          onClick={onBack}
+          sx={{ mr: 2, color: "#333" }}
+        >
+          ← Back
+        </Button>
+        <Typography variant="body2" sx={{ ml: "auto", color: "#666" }}>
+          Step 4 of 9: Initiatives
+        </Typography>
+      </Box>
+
+      {/* Green header box */}
       <Paper
         elevation={0}
         sx={{
-          p: { xs: 2, sm: 4 },
-          bgcolor: "info.main",
-          color: "info.contrastText",
+          p: { xs: 2, sm: 3 },
+          bgcolor: "#4CAF50",
+          color: "#FFFFFF",
           borderRadius: 2,
           textAlign: "center",
+          mb: 3,
         }}
       >
-        <Typography variant="h4" component="h1">
-          Initiative Matching
+        <Typography variant="h4" component="h1" gutterBottom>
+          Initiativen-Matching
         </Typography>
-        <Typography variant="h6">Select Interest Areas</Typography>
+        <Typography variant="h6">
+          Interessensgebiete auswählen
+        </Typography>
       </Paper>
-      <Grid container spacing={2}>
+
+      {/* Interest areas grid */}
+      <Grid container spacing={2} sx={{ mb: 4 }}>
         {INTEREST_AREAS2.map((interest) => {
           const Icon = interest.icon;
           const isSelected = data.interestAreas.includes(interest.id);
@@ -113,21 +130,23 @@ const Step3Initiatives: React.FC<AppProps> = ({
               <Card
                 variant="outlined"
                 sx={{
-                  height: "100%",
-                  borderColor: isSelected ? "primary.main" : "grey.300",
-                  borderWidth: 2,
+                  height: 140,
+                  bgcolor: "#FFFFFF",
+                  border: isSelected ? "3px solid #4CAF50" : "1px solid #ddd",
+                  borderRadius: 2,
+                  cursor: "pointer",
+                  "&:hover": { bgcolor: "#F5F5F5" }
                 }}
               >
                 <CardActionArea
                   onClick={() => handleInterestToggle(interest.id)}
-                  sx={{ p: 2, textAlign: "center", height: "100%" }}
+                  sx={{ p: 2, textAlign: "center", height: "100%", display: "flex", flexDirection: "column", justifyContent: "center" }}
                 >
-                  <Icon
-                    sx={{ fontSize: 40, mb: 1 }}
-                    color={isSelected ? "primary" : "action"}
-                  />
-                  <Typography variant="h6">{interest.name}</Typography>
-                  <Typography variant="body2" color="text.secondary">
+                  <Icon sx={{ fontSize: 32, mb: 1, color: "#666" }} />
+                  <Typography variant="h6" sx={{ fontSize: "0.9rem", fontWeight: "bold", mb: 0.5 }}>
+                    {interest.name}
+                  </Typography>
+                  <Typography variant="body2" sx={{ fontSize: "0.75rem", color: "text.secondary" }}>
                     {interest.description}
                   </Typography>
                 </CardActionArea>
@@ -136,30 +155,40 @@ const Step3Initiatives: React.FC<AppProps> = ({
           );
         })}
       </Grid>
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          pt: 2,
-          mt: "auto",
-        }}
-      >
-        <Button variant="text" onClick={onBack}>
-          Back
+
+      {/* Navigation buttons */}
+      <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+        <Button
+          variant="contained"
+          onClick={onBack}
+          sx={{ 
+            bgcolor: "#F44336", 
+            color: "#FFFFFF",
+            "&:hover": { bgcolor: "#D32F2F" },
+            px: 3
+          }}
+        >
+          Zurück
         </Button>
-        <Box>
-          <Button variant="text" onClick={handleSkip} sx={{ mr: 2 }}>
-            Skip
-          </Button>
-          <Button
-            variant="contained"
-            onClick={() => setShowInitiatives(true)}
-            disabled={data.interestAreas.length === 0}
-            endIcon={<ArrowForwardIcon />}
-          >
-            Find Initiatives
-          </Button>
-        </Box>
+        
+        <Typography variant="body2" sx={{ color: "#666" }}>
+          Überspringen
+        </Typography>
+        
+        <Button
+          variant="contained"
+          onClick={() => setShowInitiatives(true)}
+          disabled={data.interestAreas.length === 0}
+          endIcon={<ArrowForwardIcon />}
+          sx={{ 
+            bgcolor: "#4CAF50", 
+            color: "#FFFFFF",
+            "&:hover": { bgcolor: "#388E3C" },
+            px: 3
+          }}
+        >
+          Initiativen finden →
+        </Button>
       </Box>
     </Box>
   );
@@ -186,9 +215,13 @@ const Step3Initiatives: React.FC<AppProps> = ({
                 key={initiative.id}
                 variant="outlined"
                 sx={{
-                  borderColor: isSelected ? "info.main" : "grey.300",
+                  borderColor: isSelected ? "#007043" : "grey.300",
                   borderWidth: 2,
                   borderRadius: 2,
+                  ...(isSelected && {
+                    bgcolor: "#007043",
+                    color: "#FFFFFF"
+                  })
                 }}
               >
                 <Box
@@ -275,15 +308,20 @@ const Step3Initiatives: React.FC<AppProps> = ({
         </Card>
       </Box>
       <Box sx={{ display: "flex", justifyContent: "space-between", pt: 2 }}>
-        <Button variant="text" onClick={handleLocalBack}>
-          Back
+        <Button 
+          variant="contained" 
+          onClick={handleLocalBack}
+          sx={{ bgcolor: "#e70000", "&:hover": { bgcolor: "#cc0000" } }}
+        >
+          Zurück
         </Button>
         <Button
           variant="contained"
           onClick={onNext}
           endIcon={<ArrowForwardIcon />}
+          sx={{ bgcolor: "#00bb70", "&:hover": { bgcolor: "#009960" } }}
         >
-          Next
+          Weiter
         </Button>
       </Box>
     </Box>
@@ -291,7 +329,11 @@ const Step3Initiatives: React.FC<AppProps> = ({
 
   return (
     <Box>
-      {!showInitiatives ? renderInterestSelection() : renderInitiativeList()}
+      {!showInitiatives ? renderInterestSelection() : (
+        <Box sx={{ bgcolor: "#C8E6C9", minHeight: "100vh", p: 2 }}>
+          {renderInitiativeList()}
+        </Box>
+      )}
       <Modal open={!!qrCodeValue} onClose={() => setQrCodeValue(null)}>
         <Box sx={modalStyle}>
           <Typography variant="h6" component="h2" gutterBottom>

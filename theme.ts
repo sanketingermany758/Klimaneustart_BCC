@@ -3,18 +3,23 @@ import { createTheme } from '@mui/material/styles';
 export const theme = createTheme({
   palette: {
     primary: {
-      main: '#FBBF24', // yellow-400
-      contrastText: '#111827',
+      main: '#00bb70', // Weiter button green
+      contrastText: '#FFFFFF',
     },
     secondary: {
       main: '#e0e0e0', // gray
       contrastText: '#111827',
     },
+    error: {
+      main: '#e70000', // Red for header boxes and Zuruck button
+      contrastText: '#FFFFFF',
+    },
     success: {
-        main: '#10B981', // green
+      main: '#007043', // Dark green for selections
+      contrastText: '#FFFFFF',
     },
     background: {
-      default: '#F4F4F5',
+      default: '#FFFFFF', // white background for all pages
       paper: '#FFFFFF',
     },
     text: {

@@ -269,61 +269,100 @@ const Step2Topics: React.FC<AppProps> = ({
   };
 
   return (
-    <Box sx={{ display: "flex", flexDirection: "column", height: "100%" }}>
+    <Box sx={{ bgcolor: "#C8E6C9", minHeight: "100vh", p: 2 }}>
+      {/* Header with back button and step indicator */}
+      <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
+        <Button 
+          onClick={onBack}
+          sx={{ mr: 2, color: "#333" }}
+        >
+          ← Back
+        </Button>
+        <Typography variant="body2" sx={{ ml: "auto", color: "#666" }}>
+          Step 3 of 9: Besprochen...
+        </Typography>
+      </Box>
+
       <Box
         sx={{
-          flexGrow: 1,
           display: "flex",
           flexDirection: isSidebarMode ? { xs: "column", sm: "row" } : "column",
-          minHeight: 0,
+          minHeight: "calc(100vh - 120px)",
         }}
       >
         {/* Header for Grid mode */}
         {!isSidebarMode && (
-          <Box
+          <Paper
+            elevation={0}
             sx={{
-              p: { xs: 2, sm: 4 },
-              bgcolor: "info.main",
-              color: "info.contrastText",
+              p: { xs: 2, sm: 3 },
+              bgcolor: "#e70000",
+              color: "#FFFFFF",
               borderRadius: 2,
               textAlign: "center",
               mb: 3,
             }}
           >
             <Typography variant="h4" component="h1" gutterBottom>
-              {getString("dialogue.headerTitle")}
+              Besprochen...
             </Typography>
             <Typography variant="h6">
-              {getString("dialogue.headerSubtitle2")}
+              Wähle alle Themen, die im Dialog erwähnt wurden
             </Typography>
-          </Box>
+          </Paper>
         )}
 
         <Box sx={{ display: "flex", flexGrow: 1, gap: 2, minHeight: 0 }}>
-          {/* Animating Container */}
-          <Box sx={sidebarContainerStyles}>
+          {/* Topic Selection Container */}
+          <Box sx={{
+            display: isSidebarMode ? "flex" : "grid",
+            gridTemplateColumns: { xs: "1fr", sm: "1fr 1fr" },
+            flexDirection: isSidebarMode ? "column" : undefined,
+            gap: 2,
+            width: isSidebarMode ? { xs: "100px", sm: "140px" } : "100%",
+            flexShrink: 0,
+            ...(isSidebarMode && {
+              backgroundColor: "grey.100",
+              borderRight: 1,
+              borderColor: "divider",
+              padding: 1,
+              height: "100%",
+              overflow: "auto",
+            }),
+          }}>
             {TOPIC_DEFINITIONS.map((topic) => {
               const Icon = topic.icon;
               const isSelected = activeTopicId === topic.id;
               return (
                 <Paper
                   key={topic.id}
-                  elevation={isSidebarMode && isSelected ? 3 : 1}
+                  elevation={0}
                   onClick={() => setActiveTopicId(topic.id)}
-                  sx={topicItemStyles(topic.id)}
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    p: 2,
+                    cursor: "pointer",
+                    borderRadius: 2,
+                    bgcolor: "#FFFFFF",
+                    border: "1px solid #ddd",
+                    height: isSidebarMode ? { xs: "80px", sm: "100px" } : "auto",
+                    width: isSidebarMode ? { xs: "80px", sm: "100px" } : "auto",
+                    flexDirection: isSidebarMode ? "column" : "row",
+                    justifyContent: isSidebarMode ? "center" : "flex-start",
+                    "&:hover": { bgcolor: "#F5F5F5" }
+                  }}
                 >
-                  <Icon sx={topicIconStyles} />
-                  <Typography
-                    sx={{
-                      ...topicTextStyles,
-                      color:
-                        isSidebarMode && isSelected
-                          ? "primary.contrastText"
-                          : "text.primary",
-                    }}
-                  >
-                    {topic.name}
-                  </Typography>
+                  <Icon sx={{ 
+                    fontSize: isSidebarMode ? 32 : 24, 
+                    mr: isSidebarMode ? 0 : 2,
+                    color: "#666"
+                  }} />
+                  {!isSidebarMode && (
+                    <Typography variant="h6" sx={{ fontWeight: "normal" }}>
+                      {topic.name}
+                    </Typography>
+                  )}
                 </Paper>
               );
             })}
@@ -361,23 +400,35 @@ const Step2Topics: React.FC<AppProps> = ({
         </Box>
       </Box>
 
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          pt: 2,
-          mt: "auto",
-        }}
-      >
-        <Button variant="text" onClick={onBack}>
-          Back
+      {/* Navigation buttons */}
+      <Box sx={{ display: "flex", justifyContent: "space-between", mt: 4 }}>
+        <Button
+          variant="contained"
+          onClick={onBack}
+          sx={{ 
+            bgcolor: "#FFFFFF", 
+            color: "#333",
+            border: "1px solid #ddd",
+            "&:hover": { bgcolor: "#F5F5F5" },
+            px: 3
+          }}
+        >
+          Zurück
         </Button>
+        
         <Button
           variant="contained"
           onClick={onNext}
           endIcon={<ArrowForwardIcon />}
+          sx={{ 
+            bgcolor: "#FFFFFF", 
+            color: "#333",
+            border: "1px solid #ddd",
+            "&:hover": { bgcolor: "#F5F5F5" },
+            px: 3
+          }}
         >
-          Weiter
+          Weiter →
         </Button>
       </Box>
     </Box>
