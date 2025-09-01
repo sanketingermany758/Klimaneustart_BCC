@@ -30,7 +30,7 @@ const ThankYou: React.FC<AppProps> = ({ onRestart, data }) => {
       <Paper
         elevation={0}
         sx={{
-          bgcolor: COLORS.green2,
+          bgcolor: COLORS.new_green,
           color: COLORS.brown2,
           p: { xs: 3, sm: 4 },
           width: "100%",
@@ -77,7 +77,7 @@ const ThankYou: React.FC<AppProps> = ({ onRestart, data }) => {
           width: "100%",
           maxWidth: { xs: "100%", sm: 400 },
           mb: 2,
-          border: `2px solid ${COLORS.red2}`,
+          border: `2px solid ${COLORS.new_red}`,
           color: `${COLORS.red2}`,
           "&:hover": {
             bgcolor: `${COLORS.primary}`,
@@ -97,7 +97,7 @@ const ThankYou: React.FC<AppProps> = ({ onRestart, data }) => {
           width: "100%",
           maxWidth: { xs: "100%", sm: 400 },
           border: "1.5px solid #18181B",
-          backgroundColor: COLORS.green2,
+          backgroundColor: COLORS.new_green,
           color: COLORS.brown2,
         }}
       >
