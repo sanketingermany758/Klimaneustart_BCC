@@ -151,9 +151,9 @@ const Step3Initiatives: React.FC<AppProps> = ({
                     sx={{ fontSize: 40, mb: 1 }}
                     color={isSelected ? "primary" : "action"}
                   />
-                  <Typography variant="h6">{interest.name}</Typography>
+                  <Typography variant="h6">{t(interest.nameKey)}</Typography>
                   <Typography variant="body2" color={COLORS.heading}>
-                    {interest.description}
+                    {t(interest.descriptionKey)}
                   </Typography>
                 </CardActionArea>
               </Card>
@@ -228,10 +228,10 @@ const Step3Initiatives: React.FC<AppProps> = ({
                     sx={{ flexGrow: 1, p: 2 }}
                   >
                     <Typography variant="h6" component="div">
-                      {initiative.name}
+                      {t(initiative.nameKey)}
                     </Typography>
                     <Typography variant="body2" color={COLORS.heading}>
-                      {initiative.description}
+                      {t(initiative.descriptionKey)}
                     </Typography>
                   </CardActionArea>
 

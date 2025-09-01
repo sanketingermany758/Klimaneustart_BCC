@@ -14,6 +14,7 @@ import { INITIATIVES } from '../../constants';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import EmailIcon from '@mui/icons-material/Email';
 import { styled } from '@mui/material/styles';
+import { useLanguage } from '../../components/LanguageContext';
 
 const QRCard = styled(Card)(({ theme }) => ({
   backgroundColor: theme.palette.info.main,
@@ -47,6 +48,7 @@ const DialogueQR: React.FC<DialogueQRProps> = ({ dialogueId }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [dialogueData, setDialogueData] = useState<DialogueData | null>(null);
+  const { t } = useLanguage();
 
   useEffect(() => {
     const fetchDialogueData = async () => {
@@ -164,10 +166,10 @@ const DialogueQR: React.FC<DialogueQRProps> = ({ dialogueId }) => {
           <CardContent>
             <Box sx={{ flexGrow: 1 }}>
               <Typography variant="h6" gutterBottom>
-                {initiative.name}
+                {t(initiative.nameKey)}
               </Typography>
               <Typography variant="body2" color="text.secondary">
-                {initiative.description}
+                {t(initiative.descriptionKey)}
               </Typography>
             </Box>
             <QRCodeCanvas

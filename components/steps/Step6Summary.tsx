@@ -183,7 +183,10 @@ const Step6Summary: React.FC<AppProps> = ({
           <SummaryItem
             label={t("initiatives.initiatives")}
             value={data.selectedInitiatives
-              .map((id) => INITIATIVES.find((i) => i.id === id)?.name)
+              .map((id) => {
+                const initiative = INITIATIVES.find((i) => i.id === id);
+                return initiative ? t(initiative.nameKey) : id;
+              })
               .join(", ")}
             editable
             onEdit={() => handleEdit(StepId.Initiatives)}
