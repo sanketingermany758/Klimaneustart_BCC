@@ -22,7 +22,7 @@ const StyledButton = styled(Button)`
   background-color: ${COLORS.primary_background};
   color: ${COLORS.heading};
   &:hover {
-    background-color: ${COLORS.button_background_yellow};
+    background-color: ${COLORS.button_background_green};
   }
 `;
 

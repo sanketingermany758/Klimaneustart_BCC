@@ -1,6 +1,7 @@
 {
   "name": "berlin-climate-dialogue-web",
   "version": "1.0.0",
+  "type": "module",
   "private": true,
   "scripts": {
     "dev": "vite",
@@ -25,6 +26,6 @@
     "@types/react-dom": "^18.2.25",
     "@vitejs/plugin-react": "^4.2.1",
     "typescript": "^5.4.5",
-    "vite": "^5.2.10"
+    "vite": "^7.1.3"
   }
 }
