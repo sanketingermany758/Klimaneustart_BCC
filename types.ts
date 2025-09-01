@@ -20,18 +20,18 @@ export interface Step {
 
 export interface SubGroupOption {
   id: string;
-  name: string;
+  nameKey: string;
 }
 
 export interface TopicSubGroup {
   id: string;
-  name: string;
+  nameKey: string;
   options: SubGroupOption[];
 }
 
 export interface Topic {
   id: string;
-  name: string;
+  nameKey: string;
   icon: React.ElementType;
   subGroups?: TopicSubGroup[];
   type?: "notes" | "input";
@@ -50,10 +50,10 @@ export interface ConversationData {
   audioNoteUrl?: string;
   topicDetails: {
     [mainTopicId: string]:
-      | {
-          [subGroupId: string]: TopicSubGroupDetails;
-        }
-      | TopicSubGroupDetails; // Second case for simple note topics
+    | {
+      [subGroupId: string]: TopicSubGroupDetails;
+    }
+    | TopicSubGroupDetails; // Second case for simple note topics
   };
   districts: string[];
   selectedInitiatives: string[];
@@ -92,8 +92,8 @@ export interface DeineReflection {
 
 export interface Initiative {
   id: string;
-  name: string;
-  description: string;
+  nameKey: string;
+  descriptionKey: string;
   district: string[];
   themes: string[];
   link: string;
@@ -112,8 +112,8 @@ export interface AppProps {
 
 export interface InterestArea {
   id: string;
-  name: string;
-  description: string;
+  nameKey: string;
+  descriptionKey: string;
   icon: React.ElementType;
 }
 

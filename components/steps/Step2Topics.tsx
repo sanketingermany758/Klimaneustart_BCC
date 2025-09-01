@@ -116,7 +116,7 @@ const Step2Topics: React.FC<AppProps> = ({
               <ArrowBackIcon />
             </IconButton>
             <Typography variant="h5" component="h2">
-              {topic.name}
+              {t(topic.nameKey)}
             </Typography>
           </Box>
           <TextField
@@ -147,13 +147,13 @@ const Step2Topics: React.FC<AppProps> = ({
             <ArrowBackIcon />
           </IconButton>
           <Typography variant="h5" component="h2">
-            {topic.name}
+            {t(topic.nameKey)}
           </Typography>
         </Box>
         {topic.subGroups?.map((sub) => (
           <Accordion key={sub.id} defaultExpanded sx={{backgroundColor: COLORS.green3, borderRadius: 2, marginBottom: 2}}>
             <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-              <Typography variant="h6">{sub.name}</Typography>
+              <Typography variant="h6">{t(sub.nameKey)}</Typography>
             </AccordionSummary>
             <AccordionDetails>
               <Grid container spacing={1}>
@@ -172,7 +172,7 @@ const Step2Topics: React.FC<AppProps> = ({
                           }
                         />
                       }
-                      label={option.name}
+                      label={t(option.nameKey)}
                     />
                   </Grid>
                 ))}
@@ -343,7 +343,7 @@ const Step2Topics: React.FC<AppProps> = ({
                           : "text.primary",
                     }}
                   >
-                    {topic.name}
+                    {t(topic.nameKey)}
                   </Typography>
                   
                 </Paper>
