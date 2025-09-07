@@ -461,7 +461,8 @@ export const INITIATIVES: Initiative[] = [
   {
     id: "reparatur_initiative_jungfernmuehle",
     nameKey: "initiatives.reparatur_initiative_jungfernmuehle.name",
-    descriptionKey: "initiatives.reparatur_initiative_jungfernmuehle.description",
+    descriptionKey:
+      "initiatives.reparatur_initiative_jungfernmuehle.description",
     district: ["Neukölln"],
     themes: ["Repair Café", "Community", "Sustainability"],
     link: "http://initiative-jungfernmühle.de",
@@ -584,7 +585,7 @@ export const COLORS = {
   green11: "#DAFFD6", // very light green
   green12: "#e6f2e6", // very very light green
   green13: "#f2f9f2", // almost white green
-  new_green : "#00bb70",
+  new_green: "#00bb70",
   button_background_yellow: "#FBBF24",
   button_border_yellow: "#F59E0B",
   button_background_green: "#00bb70",
@@ -601,7 +602,7 @@ export const COLORS = {
   red7: "#dd3433",
   red8: "#fb9993",
   red9: "#fbb2b0", // light red
-  red10: "#fcd6d5", // very light red 
+  red10: "#fcd6d5", // very light red
   red11: "#fdf2f2", // almost white red
   brown0: "#8b1813", // dark brown
   brown1: "#8b1813",
@@ -613,7 +614,16 @@ export const COLORS = {
   blue5: "#9fc5f8",
   blue6: "#b0c4de", // light blue
   blue7: "#c0d4e8",
-  blue8: "#D9E8FC"
+  blue8: "#D9E8FC",
+  feuerrot: "#e70000", // PDF: Feuerrot
+  chlorophyll: "#00bb70", // PDF: Chlorophyll
+};
+
+// Font families (to be used in styled-components, MUI theme, or global CSS)
+export const FONTS = {
+  header: '"VC Henrietta Condensed Black", Arial, Helvetica, sans-serif', // Main headings
+  body: '"VC Nudge Normal", Arial, Helvetica, sans-serif', // Body text
+  legal: "Arial, Helvetica, sans-serif", // Legal/fallback
 };
 
 export { StepId };
