@@ -39,6 +39,7 @@ const StyledButton = styled(Button)`
     background-color: ${COLORS.button_background_yellow};
   }
 `;
+
 const StyledNextButton = styled(Button)`
   background-color: ${COLORS.chlorophyll};
   color: ${COLORS.white2};
@@ -83,6 +84,10 @@ const Step4Consent: React.FC<AppProps> = ({
   >(data.isAnonymous ? "anonymous" : "contact");
   const { t } = useLanguage();
   const [emailError, setEmailError] = useState<string>("");
+  const [sendCopy, setSendCopy] = useState(false);
+
+  if (sendCopy) {
+  }
 
   // Email validation helper
   const validateEmail = (email: string) => {
@@ -188,20 +193,7 @@ const Step4Consent: React.FC<AppProps> = ({
               />
             </Grid>
           </Grid>
-          {/* Checkbox for summary copy */}
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={!!data.sendSummaryCopy}
-                onChange={(e) =>
-                  updateData({ sendSummaryCopy: e.target.checked })
-                }
-                color="primary"
-              />
-            }
-            label={t("consent.sendSummaryCopy")}
-            sx={{ mt: 2 }}
-          />
+
           {/* Conditional email input */}
           {data.sendSummaryCopy && (
             <TextField
@@ -241,9 +233,25 @@ const Step4Consent: React.FC<AppProps> = ({
           {t("summary.ourQRCode")}
         </Button>
       </Paper>
-      <Typography variant="body2" color="text.secondary" sx={{ mt: 2 }}>
-        {t("consent.confidentialInfo")}
-      </Typography>
+
+      {/* Checkbox for summary copy */}
+      <FormControlLabel
+        control={
+          <Checkbox
+            checked={sendCopy && !!data.contactInfo}
+            onChange={(e) => setSendCopy(e.target.checked)}
+            color="primary"
+            sx={{
+              color: COLORS.feuerrot,
+              "&.Mui-checked": {
+                color: COLORS.chlorophyll,
+              },
+            }}
+          />
+        }
+        label={t("consent.confidentialInfo")}
+        sx={{ mt: 2 }}
+      />
 
       <Box
         sx={{
