@@ -236,8 +236,8 @@ export default {
             "lastName": "Nachname",
             "telephone": "Telefon",
             "stayAnonymous": "Anonym bleiben",
-            "privacyProtected": "Deine Privatsphäre ist geschützt. Es werden nur Dialogdaten mit ausdrücklicher Zustimmung gespeichert.",
-            "confidentialInfo": "Deine Angaben bleiben vertraulich und werden ausschließlich dazu genutzt, dich über lokale Initiativen zu informieren, die dich interessieren.",
+            "privacyProtected": "Ort, Dauer und Anzahl der Teilnehmenden werden gespeichert, alle weiteren Angaben nur mit ausdrücklicher Zustimmung.(DSGVO konform)",
+            "confidentialInfo": "Mit deiner Kopie erhälst du auch Informationen zu Initiativen, die für dich von Interesse sein können.",
             "organizationQRCode": "Organisation QR Code"
         },
         "reflection": {
