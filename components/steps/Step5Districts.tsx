@@ -17,7 +17,7 @@ const Container = styled.div`
 
 const StyledPaper = styled(Paper)`
   padding: 16px;
-  background-color: ${COLORS.new_red};
+  background-color: ${COLORS.blue1};
   color: ${COLORS.white2};
   border: 2px solid ${COLORS.chlorophyll};
   text-align: center;
@@ -25,16 +25,16 @@ const StyledPaper = styled(Paper)`
 
 const StyledButton = styled(Button)`
   background-color: ${COLORS.white2};
-  color: ${COLORS.black};
+  color: ${COLORS.blue1};
   &:hover {
-    background-color: ${COLORS.chlorophyll};
-    color: ${COLORS.blue1};
+    background-color: ${COLORS.blue1};
+    color: ${COLORS.white2};
     opacity: 0.9;
   }
   ,
   &:focus {
-    background-color: ${COLORS.chlorophyll};
-    color: ${COLORS.blue1};
+    background-color: ${COLORS.blue1};
+    color: ${COLORS.white2};
     opacity: 0.9;
   }
 `;
@@ -117,7 +117,10 @@ const Step5District: React.FC<AppProps> = ({
           </Grid>
         ))}
       </Grid>
-      <Box sx={{ display: "flex", justifyContent: "flex-end", pt: 2 }}>
+      <Box sx={{ display: "flex", justifyContent: "space-between", pt: 2 }}>
+        <StyledBackButton variant="contained" onClick={onBack}>
+          {t("dialogue.back")}
+        </StyledBackButton>
         <StyledNextButton
           variant="contained"
           onClick={() => onNext()}
