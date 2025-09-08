@@ -572,7 +572,6 @@ export const COLORS = {
   card_background: "#f5f5f5", // light background
   grey2: "#DDDDDD",
   tint1: "#eee6db",
-  primary_green: "#0c8f00",
   green2: "#1ca549",
   green3: "#36ae6e",
   green4: "#4bac6b",
@@ -585,11 +584,9 @@ export const COLORS = {
   green11: "#DAFFD6", // very light green
   green12: "#e6f2e6", // very very light green
   green13: "#f2f9f2", // almost white green
-  new_green: "#00bb70",
   button_background_yellow: "#FBBF24",
   button_border_yellow: "#F59E0B",
   button_background_green: "#00bb70",
-  //button_border_green: "#00bb70",
   primary: "#fc2a1d",
   red1: "#e20912",
   red2: "#dd3333",

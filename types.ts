@@ -50,10 +50,10 @@ export interface ConversationData {
   audioNoteUrl?: string;
   topicDetails: {
     [mainTopicId: string]:
-    | {
-      [subGroupId: string]: TopicSubGroupDetails;
-    }
-    | TopicSubGroupDetails; // Second case for simple note topics
+      | {
+          [subGroupId: string]: TopicSubGroupDetails;
+        }
+      | TopicSubGroupDetails; // Second case for simple note topics
   };
   districts: string[];
   selectedInitiatives: string[];
@@ -67,6 +67,8 @@ export interface ConversationData {
   numPeople: number;
   duration: number; // in minutes
   location?: string;
+  sendSummaryCopy?: boolean; // User wants a copy of the summary
+  summaryCopyEmail?: string; // Email to send the summary copy to
 
   // Contact info
   firstName?: string;

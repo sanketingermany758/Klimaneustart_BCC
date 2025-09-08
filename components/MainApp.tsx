@@ -17,28 +17,26 @@ import Step5District from "./steps/Step5Districts";
 import Step6Summary from "./steps/Step6Summary";
 import ThankYou from "./steps/ThankYou";
 
-
-
 const MainApp: React.FC = () => {
   const { currentStep, updateCurrentStep } = useAppContext();
   const [conversationData, setConversationData] = useState<ConversationData>({
     ...INITIAL_CONVERSATION_DATA,
     uuid: crypto.randomUUID(),
   });
-const [step2View, setStep2View] = useState<"district" | "topics">("district");
+  const [step2View, setStep2View] = useState<"district" | "topics">("district");
   const handleNext = useCallback(() => {
     updateCurrentStep(Math.min(currentStep + 1, STEPS.length));
   }, [currentStep, updateCurrentStep]);
 
   const handleBack = useCallback(() => {
-  updateCurrentStep(Math.max(currentStep - 1, 0)); // Ensure it doesn't go below 0
-}, [currentStep, updateCurrentStep]);
+    updateCurrentStep(Math.max(currentStep - 1, 0)); // Ensure it doesn't go below 0
+  }, [currentStep, updateCurrentStep]);
 
   const updateData = useCallback((data: Partial<ConversationData>) => {
     setConversationData((prev) => ({ ...prev, ...data }));
   }, []);
 
-const restart = useCallback(() => {
+  const restart = useCallback(() => {
     setConversationData({
       ...INITIAL_CONVERSATION_DATA,
       uuid: crypto.randomUUID(),
@@ -95,7 +93,7 @@ const restart = useCallback(() => {
         return <Step5Reflection {...commonProps} />;
       case StepId.Metrics:
         return <Step5Metrics {...commonProps} />;
-        case StepId.reflectionDistrict:
+      case StepId.reflectionDistrict:
         return <Step5District {...commonProps} />;
       case StepId.Summary:
         return <Step6Summary {...commonProps} onNext={handleNext} />;
@@ -107,7 +105,6 @@ const restart = useCallback(() => {
     }
   };
 
-
   return (
     <Paper
       elevation={3}
@@ -116,7 +113,7 @@ const restart = useCallback(() => {
         minHeight: "80vh",
         display: "flex",
         flexDirection: "column",
-        backgroundColor: currentStep < 3 ? COLORS.grey1 : COLORS.green10,
+        backgroundColor: COLORS.primary_background, // currentStep < 3 ? COLORS.grey1 : COLORS.green10,
       }}
     >
       {currentStep > 0 && currentStep < STEPS.length && (

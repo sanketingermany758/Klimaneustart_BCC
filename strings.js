@@ -18,7 +18,7 @@ export default {
         },
         "welcome": {
             "title": "Sag doch mal, Berlin",
-            "subtitle": "Bürger:innen Dialog dokumentiere zu gesellschaftsrelevanten Theme",
+            "subtitle": "Bürger:innen Dialog zu gesellschaftsrelevanten Themen",
             "startButton": "Starte den Dialog",
             "caredBy": "cared for by Generation iTrust",
             "tagline": "Hören, Reden, Mitgestalten"
@@ -34,8 +34,8 @@ export default {
             "selectDistrict": "Bezirk auswählen"
         },
         "topics": {
-            "housingBuildingTransition": "Wohnen/Bauwende",
-            "housingHeatTransition": "Wohnen/Wärmewende",
+            "housingBuildingTransition": "Bauwende",
+            "housingHeatTransition": "Wärmewende",
             "mobility": "Mobilität",
             "climateAdaptation": "Klimaanpassung",
             "otherNotes": "Sonstiges/Notizen",
@@ -325,7 +325,7 @@ export default {
             "notesLabel": "Notes",
             "notesPlaceholder": "What is the dialogue partner's\ninterest?\nWhat makes a city worth living in\nfor you?",
             "recordAudio": "Record audio",
-            "skip": "skip",
+            "skip": "Skip",
             "back": "Back",
             "next": "Next",
             "continue": "Continue",
@@ -333,7 +333,7 @@ export default {
         },
         "welcome": {
             "title": "Yo, speak up, Berlin",
-            "subtitle": "Citizen dialogue documentation on socially relevant themes",
+            "subtitle": "Citizens' dialogue on socially relevant topics",
             "startButton": "Start the dialogue",
             "caredBy": "cared for by Generation iTrust",
             "tagline": "Listen. Talk. Co-create"
@@ -349,8 +349,8 @@ export default {
             "selectDistrict": "Select District"
         },
         "topics": {
-            "housingBuildingTransition": "Housing / Building Transition",
-            "housingHeatTransition": "Housing / Heat Transition",
+            "housingBuildingTransition": "Building Transition",
+            "housingHeatTransition": "Heat Transition",
             "mobility": "Mobility",
             "climateAdaptation": "Climate Adaptation",
             "otherNotes": "Other/Notes",

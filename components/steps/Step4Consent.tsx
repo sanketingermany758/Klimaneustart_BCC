@@ -16,6 +16,8 @@ import QrCode2Icon from "@mui/icons-material/QrCode2";
 import { COLORS } from "../../constants";
 import { useLanguage } from "../LanguageContext";
 import styled from "styled-components";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Checkbox from "@mui/material/Checkbox";
 
 const modalStyle = {
   position: "absolute" as "absolute",
@@ -37,6 +39,37 @@ const StyledButton = styled(Button)`
     background-color: ${COLORS.button_background_yellow};
   }
 `;
+const StyledNextButton = styled(Button)`
+  background-color: ${COLORS.chlorophyll};
+  color: ${COLORS.white2};
+  &:hover {
+    background-color: ${COLORS.chlorophyll};
+    color: ${COLORS.white2};
+    opacity: 0.7;
+  }
+  ,
+  &:focus {
+    background-color: ${COLORS.chlorophyll};
+    color: ${COLORS.brown2};
+    opacity: 0.7;
+  }
+`;
+
+const StyledBackButton = styled(Button)`
+  background-color: ${COLORS.feuerrot};
+  color: ${COLORS.white2};
+  &:hover {
+    background-color: ${COLORS.feuerrot};
+    color: ${COLORS.white2};
+    opacity: 0.7;
+  }
+  ,
+  &:focus {
+    background-color: ${COLORS.feuerrot};
+    color: ${COLORS.white2};
+    opacity: 0.7;
+  }
+`;
 
 const Step4Consent: React.FC<AppProps> = ({
   data,
@@ -49,6 +82,12 @@ const Step4Consent: React.FC<AppProps> = ({
     "contact" | "anonymous"
   >(data.isAnonymous ? "anonymous" : "contact");
   const { t } = useLanguage();
+  const [emailError, setEmailError] = useState<string>("");
+
+  // Email validation helper
+  const validateEmail = (email: string) => {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  };
 
   const handlePreferenceChange = (
     event: React.MouseEvent<HTMLElement>,
@@ -91,9 +130,7 @@ const Step4Consent: React.FC<AppProps> = ({
         <Typography variant="h4" component="h1">
           {t("consent.stayInTouch")}
         </Typography>
-        <Typography variant="h6">
-          {t("consent.stayUpToDate")}
-        </Typography>
+        <Typography variant="h6">{t("consent.stayUpToDate")}</Typography>
       </Paper>
 
       <ToggleButtonGroup
@@ -105,7 +142,9 @@ const Step4Consent: React.FC<AppProps> = ({
         fullWidth
       >
         <ToggleButton value="contact">{t("consent.shareContact")}</ToggleButton>
-        <ToggleButton value="anonymous">{t("consent.stayAnonymous")}</ToggleButton>
+        <ToggleButton value="anonymous">
+          {t("consent.stayAnonymous")}
+        </ToggleButton>
       </ToggleButtonGroup>
 
       {contactPreference === "contact" && (
@@ -149,6 +188,41 @@ const Step4Consent: React.FC<AppProps> = ({
               />
             </Grid>
           </Grid>
+          {/* Checkbox for summary copy */}
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={!!data.sendSummaryCopy}
+                onChange={(e) =>
+                  updateData({ sendSummaryCopy: e.target.checked })
+                }
+                color="primary"
+              />
+            }
+            label={t("consent.sendSummaryCopy")}
+            sx={{ mt: 2 }}
+          />
+          {/* Conditional email input */}
+          {data.sendSummaryCopy && (
+            <TextField
+              fullWidth
+              label={t("consent.summaryCopyEmail")}
+              type="email"
+              value={data.summaryCopyEmail || ""}
+              onChange={(e) => {
+                const value = e.target.value;
+                updateData({ summaryCopyEmail: value });
+                setEmailError(
+                  value && !validateEmail(value)
+                    ? t("consent.invalidEmail")
+                    : ""
+                );
+              }}
+              error={!!emailError}
+              helperText={emailError}
+              sx={{ mt: 2 }}
+            />
+          )}
         </Paper>
       )}
 
@@ -179,12 +253,12 @@ const Step4Consent: React.FC<AppProps> = ({
           mt: "auto",
         }}
       >
-        <StyledButton variant="text" onClick={onBack}>
+        <StyledBackButton variant="contained" onClick={onBack}>
           {t("dialogue.back")}
-        </StyledButton>
-        <StyledButton variant="contained" onClick={onNext}>
+        </StyledBackButton>
+        <StyledNextButton variant="contained" onClick={onNext}>
           {t("dialogue.next")}
-        </StyledButton>
+        </StyledNextButton>
       </Box>
 
       <Modal open={showQR} onClose={() => setShowQR(false)}>

@@ -1,3 +1,84 @@
+/* --- FONT FACE DEFINITIONS --- */
+/* User must provide the actual font files in the public/assets/fonts/ directory */
+@font-face {
+    font-family: 'VC Henrietta Condensed Black';
+    src: url('/assets/fonts/Henriette-CondensedBlack.woff2') format('woff2');
+        /* url('/assets/fonts/Henriette-CondensedBlack.woff') format('woff'); */
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'VC Nudge Normal';
+    src: url('/assets/fonts/VCNudgeNormalRegularTrial.otf') format('otf');
+        /* url('/assets/fonts/VC-Nudge-Normal.woff') format('woff'); */
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Helvetica';
+    src: url('assets/fonts/helvetica-255/Helvetica.ttf') format('ttf');
+    font-weight: 400;
+    font-style: normal;
+}
+
+:root {
+    --feuerrot: #e70000;
+    --chlorophyll: #00bb70;
+    --header-font: 'VC Henrietta Condensed Black', Arial, Helvetica, sans-serif;
+    --body-font: 'VC Nudge Normal', Arial, Helvetica, sans-serif;
+    --legal-font: Arial, Helvetica, sans-serif;
+    --main-bg: #fff;
+}
+
+body {
+    background: var(--main-bg);
+    font-family: var(--body-font);
+    line-height: 1.1;
+    /* Compact line spacing as per PDF */
+    color: #111;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--header-font);
+    font-weight: 900;
+    line-height: 1.05;
+}
+
+.legal,
+.impressum,
+.flow-text {
+    font-family: var(--legal-font);
+    font-size: 0.95em;
+    line-height: 1.1;
+}
+
+/* Utility classes for color usage */
+.feuerrot {
+    color: var(--feuerrot) !important;
+}
+
+.chlorophyll {
+    color: var(--chlorophyll) !important;
+}
+
+.bg-feuerrot {
+    background: var(--feuerrot) !important;
+    color: #fff !important;
+}
+
+.bg-chlorophyll {
+    background: var(--chlorophyll) !important;
+    color: #fff !important;
+}
+
+/* Add more as needed for buttons, boxes, etc. */
 span.MuiBottomNavigationAction-label.Mui-selected.css-1q4s9dh-MuiBottomNavigationAction-label {
     color: #0c328a;
 }

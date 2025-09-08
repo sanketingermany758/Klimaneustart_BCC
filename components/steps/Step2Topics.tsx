@@ -41,10 +41,43 @@ const StyledPaper = styled(Paper)`
 `;
 
 const StyledButton = styled(Button)`
-  background-color: ${COLORS.primary_background};
-  color: ${COLORS.heading};
+  background-color: ${COLORS.feuerrot};
+  color: ${COLORS.primary_background};
   &:hover {
-    background-color: ${COLORS.button_background_green};
+    background-color: ${COLORS.feuerrot};
+    border: 2px solid ${COLORS.brown0};
+  }
+`;
+
+const StyledNextButton = styled(Button)`
+  background-color: ${COLORS.chlorophyll};
+  color: ${COLORS.white2};
+  &:hover {
+    background-color: ${COLORS.chlorophyll};
+    color: ${COLORS.white2};
+    opacity: 0.7;
+  }
+  ,
+  &:focus {
+    background-color: ${COLORS.chlorophyll};
+    color: ${COLORS.brown2};
+    opacity: 0.7;
+  }
+`;
+
+const StyledBackButton = styled(Button)`
+  background-color: ${COLORS.feuerrot};
+  color: ${COLORS.white2};
+  &:hover {
+    background-color: ${COLORS.feuerrot};
+    color: ${COLORS.white2};
+    opacity: 0.7;
+  }
+  ,
+  &:focus {
+    background-color: ${COLORS.feuerrot};
+    color: ${COLORS.white2};
+    opacity: 0.7;
   }
 `;
 
@@ -111,7 +144,7 @@ const Step2Topics: React.FC<AppProps> = ({
     if (topic.type === "notes") {
       return (
         <Box>
-          <Box sx={{ display: "flex", alignItems: "center", mb: 2}}>
+          <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
             <IconButton onClick={() => setActiveTopicId(null)}>
               <ArrowBackIcon />
             </IconButton>
@@ -129,7 +162,10 @@ const Step2Topics: React.FC<AppProps> = ({
               updateData({
                 topicDetails: {
                   ...data.topicDetails,
-                  [topic.id]: { customNote: e.target.value, selectedOptions: [] },
+                  [topic.id]: {
+                    customNote: e.target.value,
+                    selectedOptions: [],
+                  },
                 },
               })
             }
@@ -151,7 +187,14 @@ const Step2Topics: React.FC<AppProps> = ({
           </Typography>
         </Box>
         {topic.subGroups?.map((sub) => (
-          <Accordion key={sub.id} defaultExpanded sx={{backgroundColor: COLORS.green3, borderRadius: 2, marginBottom: 2}}>
+          <Accordion
+            key={sub.id}
+            defaultExpanded
+            sx={{
+              borderRadius: 2,
+              marginBottom: 2,
+            }}
+          >
             <AccordionSummary expandIcon={<ExpandMoreIcon />}>
               <Typography variant="h6">{t(sub.nameKey)}</Typography>
             </AccordionSummary>
@@ -235,14 +278,17 @@ const Step2Topics: React.FC<AppProps> = ({
       // Sidebar Mode Styles
       ...(isSidebarMode
         ? {
-            flexDirection: "column",
+            flexDirection: "row",
             justifyContent: "center",
             height: { xs: "70px", sm: "70px" },
             width: { xs: "70px", sm: "70px" },
             p: 1,
-            color: isActive ? "primary.contrastText" : "primary.dark",
-            border: isActive ? '4px solid' : '1px solid',
-            borderColor: isActive ? COLORS.green2 : COLORS.white2,
+            color: isActive ? COLORS.white2 : COLORS.feuerrot,
+            backgroundColor: isActive
+              ? COLORS.feuerrot
+              : COLORS.primary_background,
+            border: isActive ? "1px solid" : "1px solid",
+            borderColor: isActive ? COLORS.feuerrot : COLORS.white2,
             // borderSize: isActive ? 2 : 1,
             position: "relative",
             "::after": {
@@ -261,16 +307,18 @@ const Step2Topics: React.FC<AppProps> = ({
               transition: `opacity 0.3s ${ANIMATION_SPEED}`,
             },
             "&:hover": {
-              backgroundColor: isActive ? "primary.dark" : "action.hover",
+              // backgroundColor: isActive ? "none" : COLORS.feuerrot,
+              borderColor: isActive ? "none" : COLORS.feuerrot,
+              border: isActive ? "1px solid" : "5px solid",
             },
           }
         : {
             // Grid Mode Styles
             flexDirection: "row",
-            justifyContent: "flex-start",
+            // justifyContent: "flex-start",
             "&:hover": {
               backgroundColor: "action.hover",
-              borderColor: "primary.main",
+              borderColor: COLORS.feuerrot,
             },
           }),
     };
@@ -300,7 +348,9 @@ const Step2Topics: React.FC<AppProps> = ({
         sx={{
           flexGrow: 1,
           display: "flex",
-          flexDirection: isSidebarMode ? { xs: "column", sm: "column" } : "column",
+          flexDirection: isSidebarMode
+            ? { xs: "column", sm: "column" }
+            : "column",
           justifyContent: "center",
           minHeight: 0,
         }}
@@ -317,22 +367,28 @@ const Step2Topics: React.FC<AppProps> = ({
           </StyledPaper>
         )}
 
-        <Box sx={{ display: "flex", flexGrow: 1, gap: 1, minHeight: 0,marginTop:3 }}>
+        <Box
+          sx={{
+            display: "flex",
+            flexGrow: 1,
+            gap: 1,
+            minHeight: 0,
+            marginTop: 3,
+          }}
+        >
           {/* Animating Container */}
           <Box sx={sidebarContainerStyles}>
             {TOPIC_DEFINITIONS.map((topic) => {
               const Icon = topic.icon;
               const isSelected = activeTopicId === topic.id;
               return (
-                
                 <Paper
-                component={"div"}
+                  component={"div"}
                   key={topic.id}
                   elevation={isSidebarMode && isSelected ? 3 : 1}
                   onClick={() => setActiveTopicId(topic.id)}
                   sx={topicItemStyles(topic.id)}
                 >
-                  
                   <Icon sx={topicIconStyles} />
                   <Typography
                     sx={{
@@ -345,9 +401,7 @@ const Step2Topics: React.FC<AppProps> = ({
                   >
                     {t(topic.nameKey)}
                   </Typography>
-                  
                 </Paper>
-                
               );
             })}
           </Box>
@@ -394,16 +448,16 @@ const Step2Topics: React.FC<AppProps> = ({
           mt: "auto",
         }}
       >
-        <StyledButton variant="text" onClick={onBack}>
+        <StyledBackButton variant="text" onClick={onBack}>
           {t("dialogue.back")}
-        </StyledButton>
-        <StyledButton
+        </StyledBackButton>
+        <StyledNextButton
           variant="contained"
           onClick={onNext}
           endIcon={<ArrowForwardIcon />}
         >
           {t("dialogue.next")}
-        </StyledButton>
+        </StyledNextButton>
       </Box>
     </Container>
   );

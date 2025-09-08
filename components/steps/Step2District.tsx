@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  Box,
-  Typography,
-  Button,
-  Paper,
-} from "@mui/material";
+import { Box, Typography, Button, Paper } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { AppProps } from "../../types";
@@ -24,22 +19,55 @@ const StyledPaper = styled(Paper)`
   padding: 16px;
   background-color: ${COLORS.new_red};
   color: ${COLORS.white2};
-  border: 2px solid ${COLORS.green6};
+  border: 2px solid ${COLORS.chlorophyll};
   text-align: center;
 `;
 
 const StyledButton = styled(Button)`
   background-color: ${COLORS.white2};
-  color: ${COLORS.blue1};
+  color: ${COLORS.black};
   &:hover {
-    background-color: ${COLORS.button_background_green};
-    color: ${COLORS.brown2};
+    background-color: ${COLORS.chlorophyll};
+    color: ${COLORS.blue1};
     opacity: 0.9;
-  },
-     &:focus {
-    background-color: ${COLORS.button_background_green};
-    color: ${COLORS.brown2};
+  }
+  ,
+  &:focus {
+    background-color: ${COLORS.chlorophyll};
+    color: ${COLORS.white2};
     opacity: 0.9;
+  }
+`;
+
+const StyledNextButton = styled(Button)`
+  background-color: ${COLORS.chlorophyll};
+  color: ${COLORS.white2};
+  &:hover {
+    background-color: ${COLORS.chlorophyll};
+    color: ${COLORS.white2};
+    opacity: 0.7;
+  }
+  ,
+  &:focus {
+    background-color: ${COLORS.chlorophyll};
+    color: ${COLORS.brown2};
+    opacity: 0.7;
+  }
+`;
+
+const StyledBackButton = styled(Button)`
+  background-color: ${COLORS.feuerrot};
+  color: ${COLORS.white2};
+  &:hover {
+    background-color: ${COLORS.feuerrot};
+    color: ${COLORS.white2};
+    opacity: 0.7;
+  }
+  ,
+  &:focus {
+    background-color: ${COLORS.feuerrot};
+    color: ${COLORS.white2};
+    opacity: 0.7;
   }
 `;
 
@@ -62,9 +90,7 @@ const Step2District: React.FC<AppProps> = ({
         <Typography variant="h4" component="h1" gutterBottom>
           {t("dialogue.headerTitle")}
         </Typography>
-        <Typography variant="h6">
-          {t("dialogue.headerSubtitle")}
-        </Typography>
+        <Typography variant="h6">{t("dialogue.headerSubtitle")}</Typography>
       </StyledPaper>
 
       <Grid container spacing={2}>
@@ -72,10 +98,11 @@ const Step2District: React.FC<AppProps> = ({
           <Grid xs={6} sm={4} md={3} key={district}>
             <StyledButton
               fullWidth
-              variant={data.districts[0] === district ? "contained" : "outlined"}
+              variant={
+                data.districts[0] === district ? "contained" : "outlined"
+              }
               onClick={() => handleDistrictSelect(district)}
               sx={{ height: "100%" }}
-
             >
               {district}
             </StyledButton>
@@ -84,16 +111,18 @@ const Step2District: React.FC<AppProps> = ({
       </Grid>
 
       <Box sx={{ display: "flex", justifyContent: "space-between", pt: 2 }}>
-        <Button variant="text" onClick={onBack}>
+        <StyledBackButton variant="contained" onClick={onBack}>
           {t("dialogue.back")}
-        </Button>
-        <StyledButton
-          variant="contained"
+        </StyledBackButton>
+        <StyledNextButton
+          // variant="outlined"
           onClick={onNext}
           endIcon={<ArrowForwardIcon />}
         >
-          {data.districts.length === 0 ? t("dialogue.skip") : t("dialogue.next")}
-        </StyledButton>
+          {data.districts.length === 0
+            ? t("dialogue.skip")
+            : t("dialogue.next")}
+        </StyledNextButton>
       </Box>
     </Container>
   );

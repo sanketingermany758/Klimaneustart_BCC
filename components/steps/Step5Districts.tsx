@@ -19,22 +19,55 @@ const StyledPaper = styled(Paper)`
   padding: 16px;
   background-color: ${COLORS.new_red};
   color: ${COLORS.white2};
-  border: 2px solid ${COLORS.green6};
+  border: 2px solid ${COLORS.chlorophyll};
   text-align: center;
 `;
 
 const StyledButton = styled(Button)`
   background-color: ${COLORS.white2};
-  color: ${COLORS.blue1};
+  color: ${COLORS.black};
   &:hover {
-    background-color: ${COLORS.button_background_green};
-    color: ${COLORS.brown2};
+    background-color: ${COLORS.chlorophyll};
+    color: ${COLORS.blue1};
     opacity: 0.9;
-  },
-     &:focus {
-    background-color: ${COLORS.button_background_green};
-    color: ${COLORS.brown2};
+  }
+  ,
+  &:focus {
+    background-color: ${COLORS.chlorophyll};
+    color: ${COLORS.blue1};
     opacity: 0.9;
+  }
+`;
+
+const StyledNextButton = styled(Button)`
+  background-color: ${COLORS.chlorophyll};
+  color: ${COLORS.white2};
+  &:hover {
+    background-color: ${COLORS.chlorophyll};
+    color: ${COLORS.white2};
+    opacity: 0.7;
+  }
+  ,
+  &:focus {
+    background-color: ${COLORS.chlorophyll};
+    color: ${COLORS.brown2};
+    opacity: 0.7;
+  }
+`;
+
+const StyledBackButton = styled(Button)`
+  background-color: ${COLORS.feuerrot};
+  color: ${COLORS.white2};
+  &:hover {
+    background-color: ${COLORS.feuerrot};
+    color: ${COLORS.white2};
+    opacity: 0.7;
+  }
+  ,
+  &:focus {
+    background-color: ${COLORS.feuerrot};
+    color: ${COLORS.white2};
+    opacity: 0.7;
   }
 `;
 
@@ -60,14 +93,11 @@ const Step5District: React.FC<AppProps> = ({
     <Box
       sx={{ display: "flex", flexDirection: "column", height: "100%", gap: 3 }}
     >
-      <StyledPaper elevation={0}
-      >
+      <StyledPaper elevation={0}>
         <Typography variant="h4" component="h1" gutterBottom>
           {t("dialogue.headerTitle")}
         </Typography>
-        <Typography variant="h6">
-          {t("dialogue.headerSubtitle")}
-        </Typography>
+        <Typography variant="h6">{t("dialogue.headerSubtitle")}</Typography>
       </StyledPaper>
       <Grid container spacing={2}>
         {BERLIN_DISTRICTS.map((district) => (
@@ -88,13 +118,13 @@ const Step5District: React.FC<AppProps> = ({
         ))}
       </Grid>
       <Box sx={{ display: "flex", justifyContent: "flex-end", pt: 2 }}>
-        <StyledButton
+        <StyledNextButton
           variant="contained"
           onClick={() => onNext()}
           endIcon={<ArrowForwardIcon />}
         >
           {t("dialogue.next")}
-        </StyledButton>
+        </StyledNextButton>
       </Box>
     </Box>
   );

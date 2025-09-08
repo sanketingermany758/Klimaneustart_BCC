@@ -28,7 +28,6 @@ interface SummaryItemProps {
   editable?: boolean;
 }
 
-
 const StyledButton = styled(Button)`
   background-color: ${COLORS.primary_background};
   color: ${COLORS.heading};
@@ -37,6 +36,37 @@ const StyledButton = styled(Button)`
   }
 `;
 
+const StyledNextButton = styled(Button)`
+  background-color: ${COLORS.chlorophyll};
+  color: ${COLORS.white2};
+  &:hover {
+    background-color: ${COLORS.chlorophyll};
+    color: ${COLORS.white2};
+    opacity: 0.7;
+  }
+  ,
+  &:focus {
+    background-color: ${COLORS.chlorophyll};
+    color: ${COLORS.brown2};
+    opacity: 0.7;
+  }
+`;
+
+const StyledBackButton = styled(Button)`
+  background-color: ${COLORS.feuerrot};
+  color: ${COLORS.white2};
+  &:hover {
+    background-color: ${COLORS.feuerrot};
+    color: ${COLORS.white2};
+    opacity: 0.7;
+  }
+  ,
+  &:focus {
+    background-color: ${COLORS.feuerrot};
+    color: ${COLORS.white2};
+    opacity: 0.7;
+  }
+`;
 
 const SummaryItem: React.FC<SummaryItemProps> = ({
   label,
@@ -88,7 +118,7 @@ const Step6Summary: React.FC<AppProps> = ({
 
   const handleEdit = (stepId: StepId) => {
     console.log(`Navigating to step: ${stepId}`);
-    
+
     if (navigateToStep) {
       navigateToStep(stepId);
     }
@@ -102,7 +132,6 @@ const Step6Summary: React.FC<AppProps> = ({
       const result = await saveConversation(payload);
 
       if (sendCopy) {
-
       }
 
       onNext();
@@ -251,13 +280,21 @@ const Step6Summary: React.FC<AppProps> = ({
       )}
 
       <Box sx={{ display: "flex", justifyContent: "space-between", mt: 4 }}>
-        <StyledButton variant="text" onClick={onBack}>
+        <StyledBackButton variant="contained" onClick={onBack}>
           {t("dialogue.back")}
-        </StyledButton>
+        </StyledBackButton>
         <LoadingButton
           variant="contained"
           onClick={handleSubmit}
           loading={isSubmitting}
+          sx={{
+            backgroundColor: COLORS.chlorophyll,
+            color: COLORS.white2,
+            ":hover": {
+              backgroundColor: COLORS.chlorophyll,
+              opacity: 0.7,
+            },
+          }}
         >
           Submit Conversation
         </LoadingButton>

@@ -15,6 +15,38 @@ const StyledButton = styled(Button)`
   }
 `;
 
+const StyledNextButton = styled(Button)`
+  background-color: ${COLORS.chlorophyll};
+  color: ${COLORS.white2};
+  &:hover {
+    background-color: ${COLORS.chlorophyll};
+    color: ${COLORS.white2};
+    opacity: 0.7;
+  }
+  ,
+  &:focus {
+    background-color: ${COLORS.chlorophyll};
+    color: ${COLORS.brown2};
+    opacity: 0.7;
+  }
+`;
+
+const StyledBackButton = styled(Button)`
+  background-color: ${COLORS.feuerrot};
+  color: ${COLORS.white2};
+  &:hover {
+    background-color: ${COLORS.feuerrot};
+    color: ${COLORS.white2};
+    opacity: 0.7;
+  }
+  ,
+  &:focus {
+    background-color: ${COLORS.feuerrot};
+    color: ${COLORS.white2};
+    opacity: 0.7;
+  }
+`;
+
 const Step5Reflection: React.FC<AppProps> = ({
   data,
   updateData,
@@ -40,9 +72,7 @@ const Step5Reflection: React.FC<AppProps> = ({
         <Typography variant="h4" component="h1">
           {t("reflection.yourReflection")}
         </Typography>
-        <Typography variant="h6">
-          {t("reflection.whatElseShowed")}
-        </Typography>
+        <Typography variant="h6">{t("reflection.whatElseShowed")}</Typography>
       </Paper>
 
       <Box sx={{ flexGrow: 1 }}>
@@ -113,16 +143,18 @@ const Step5Reflection: React.FC<AppProps> = ({
           mt: "auto",
         }}
       >
-        <StyledButton variant="text" onClick={onBack}>
+        <StyledBackButton variant="contained" onClick={onBack}>
           {t("dialogue.back")}
-        </StyledButton>
-        <StyledButton
-          variant="contained"
+        </StyledBackButton>
+        <StyledNextButton
+          // variant="outlined"
           onClick={onNext}
           endIcon={<ArrowForwardIcon />}
         >
-          {t("dialogue.next")}
-        </StyledButton>
+          {data.districts.length === 0
+            ? t("dialogue.skip")
+            : t("dialogue.next")}
+        </StyledNextButton>
       </Box>
     </Box>
   );

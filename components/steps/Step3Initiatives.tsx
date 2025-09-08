@@ -44,9 +44,9 @@ const Container = styled.div`
 
 const StyledPaper = styled(Paper)`
   padding: 16px;
-  background-color: ${COLORS.primary_green};
+  background-color: ${COLORS.new_red};
   color: ${COLORS.white2};
-  border: 2px solid ${COLORS.green6};
+  border: 2px solid ${COLORS.chlorophyll};
   text-align: center;
 `;
 
@@ -55,6 +55,38 @@ const StyledButton = styled(Button)`
   color: ${COLORS.heading};
   &:hover {
     background-color: ${COLORS.button_background_yellow};
+  }
+`;
+
+const StyledNextButton = styled(Button)`
+  background-color: ${COLORS.chlorophyll};
+  color: ${COLORS.white2};
+  &:hover {
+    background-color: ${COLORS.chlorophyll};
+    color: ${COLORS.white2};
+    opacity: 0.7;
+  }
+  ,
+  &:focus {
+    background-color: ${COLORS.chlorophyll};
+    color: ${COLORS.brown2};
+    opacity: 0.7;
+  }
+`;
+
+const StyledBackButton = styled(Button)`
+  background-color: ${COLORS.feuerrot};
+  color: ${COLORS.white2};
+  &:hover {
+    background-color: ${COLORS.feuerrot};
+    color: ${COLORS.white2};
+    opacity: 0.7;
+  }
+  ,
+  &:focus {
+    background-color: ${COLORS.feuerrot};
+    color: ${COLORS.white2};
+    opacity: 0.7;
   }
 `;
 
@@ -114,21 +146,14 @@ const Step3Initiatives: React.FC<AppProps> = ({
     <Box
       sx={{ display: "flex", flexDirection: "column", height: "100%", gap: 3 }}
     >
-      <Paper
-        elevation={0}
-        sx={{
-          p: { xs: 2, sm: 4 },
-          bgcolor: COLORS.blue1,
-          color: COLORS.white2,
-          borderRadius: 2,
-          textAlign: "center",
-        }}
-      >
+      <StyledPaper elevation={0}>
         <Typography variant="h4" component="h1">
           {t("initiatives.initiativeMatching")}
         </Typography>
-        <Typography variant="h6">{t("initiatives.selectInterestAreas")}</Typography>
-      </Paper>
+        <Typography variant="h6">
+          {t("initiatives.selectInterestAreas")}
+        </Typography>
+      </StyledPaper>
       <Grid container spacing={2}>
         {INTEREST_AREAS2.map((interest) => {
           const Icon = interest.icon;
@@ -139,7 +164,9 @@ const Step3Initiatives: React.FC<AppProps> = ({
                 variant="outlined"
                 sx={{
                   height: "100%",
-                  borderColor: isSelected ? COLORS.button_background_yellow : COLORS.grey2,
+                  borderColor: isSelected
+                    ? COLORS.button_background_yellow
+                    : COLORS.grey2,
                   borderWidth: 2,
                 }}
               >
@@ -169,21 +196,20 @@ const Step3Initiatives: React.FC<AppProps> = ({
           mt: "auto",
         }}
       >
-        <StyledButton variant="text" onClick={onBack}>
+        <StyledBackButton variant="contained" onClick={onBack}>
           {t("dialogue.back")}
-        </StyledButton>
+        </StyledBackButton>
         <Box>
           <StyledButton variant="text" onClick={handleSkip} sx={{ mr: 2 }}>
             {t("dialogue.skip")}
           </StyledButton>
-          <StyledButton
+          <StyledNextButton
             variant="contained"
             onClick={() => setShowInitiatives(true)}
             disabled={data.interestAreas.length === 0}
-            endIcon={<ArrowForwardIcon />}
           >
             {t("initiatives.findInitiatives")}
-          </StyledButton>
+          </StyledNextButton>
         </Box>
       </Box>
     </Box>
@@ -191,16 +217,17 @@ const Step3Initiatives: React.FC<AppProps> = ({
 
   const renderInitiativeList = () => (
     <Box>
-      <StyledButton
+      <StyledBackButton
         onClick={handleLocalBack}
         startIcon={<ArrowBackIcon />}
         sx={{ mb: 2 }}
       >
         {t("initiatives.changeInterests")}
-      </StyledButton>
+      </StyledBackButton>
       <Typography variant="h4" gutterBottom>
         {t("initiatives.relevantInitiatives")}
-        {data.districts.length > 0 && ` ${t("initiatives.in")} ${data.districts.join(", ")}`}
+        {data.districts.length > 0 &&
+          ` ${t("initiatives.in")} ${data.districts.join(", ")}`}
       </Typography>
       <Box sx={{ display: "flex", flexDirection: "column", gap: 2, mb: 4 }}>
         {filteredInitiatives.length > 0 ? (
@@ -294,22 +321,26 @@ const Step3Initiatives: React.FC<AppProps> = ({
             sx={{ p: 2 }}
           >
             <Typography variant="h6">
-              {isSavingDraft ? t("initiatives.preparingQR") : t("initiatives.showQR")}
+              {isSavingDraft
+                ? t("initiatives.preparingQR")
+                : t("initiatives.showQR")}
             </Typography>
           </CardActionArea>
         </Card>
       </Box>
       <Box sx={{ display: "flex", justifyContent: "space-between", pt: 2 }}>
-        <StyledButton variant="text" onClick={handleLocalBack}>
+        <StyledBackButton variant="text" onClick={handleLocalBack}>
           {t("dialogue.back")}
-        </StyledButton>
-        <StyledButton
-          variant="contained"
+        </StyledBackButton>
+        <StyledNextButton
+          // variant="outlined"
           onClick={onNext}
           endIcon={<ArrowForwardIcon />}
         >
-          {t("dialogue.next")}
-        </StyledButton>
+          {data.districts.length === 0
+            ? t("dialogue.skip")
+            : t("dialogue.next")}
+        </StyledNextButton>
       </Box>
     </Box>
   );
@@ -323,11 +354,26 @@ const Step3Initiatives: React.FC<AppProps> = ({
             {t("initiatives.scanForMoreInfo")}
           </Typography>
           {qrCodeValue && (
-            <QRCodeCanvas
-              value={qrCodeValue}
-              size={256}
-              style={{ height: "auto", maxWidth: "100%", width: "100%" }}
-            />
+            <>
+              <QRCodeCanvas
+                value={qrCodeValue}
+                size={256}
+                style={{ height: "auto", maxWidth: "100%", width: "100%" }}
+              />
+              {/* Mock link next to QR code */}
+              <Box sx={{ mt: 2 }}>
+                <a
+                  href="#"
+                  style={{
+                    color: COLORS.feuerrot,
+                    textDecoration: "underline",
+                    marginLeft: 8,
+                  }}
+                >
+                  A mock link for now
+                </a>
+              </Box>
+            </>
           )}
           <Button onClick={() => setQrCodeValue(null)} sx={{ mt: 2 }}>
             {t("initiatives.close")}

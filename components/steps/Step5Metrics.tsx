@@ -26,6 +26,38 @@ const StyledButton = styled(Button)`
   }
 `;
 
+const StyledNextButton = styled(Button)`
+  background-color: ${COLORS.chlorophyll};
+  color: ${COLORS.white2};
+  &:hover {
+    background-color: ${COLORS.chlorophyll};
+    color: ${COLORS.white2};
+    opacity: 0.7;
+  }
+  ,
+  &:focus {
+    background-color: ${COLORS.chlorophyll};
+    color: ${COLORS.brown2};
+    opacity: 0.7;
+  }
+`;
+
+const StyledBackButton = styled(Button)`
+  background-color: ${COLORS.feuerrot};
+  color: ${COLORS.white2};
+  &:hover {
+    background-color: ${COLORS.feuerrot};
+    color: ${COLORS.white2};
+    opacity: 0.7;
+  }
+  ,
+  &:focus {
+    background-color: ${COLORS.feuerrot};
+    color: ${COLORS.white2};
+    opacity: 0.7;
+  }
+`;
+
 const Step5Metrics: React.FC<AppProps> = ({
   data,
   updateData,
@@ -55,7 +87,9 @@ const Step5Metrics: React.FC<AppProps> = ({
         <Typography variant="h4" component="h1">
           {t("metrics.dialogue")}
         </Typography>
-        <Typography variant="h6">{t("metrics.generalInformation")} Infos</Typography>
+        <Typography variant="h6">
+          {t("metrics.generalInformation")} Infos
+        </Typography>
       </Paper>
 
       <Grid container spacing={2}>
@@ -85,23 +119,22 @@ const Step5Metrics: React.FC<AppProps> = ({
                 alignItems: "center",
                 justifyContent: "center",
               },
-              
-          "& .MuiFilledInput-root": {
-            backgroundColor: COLORS.white2,
-            "&:hover": {
-              backgroundColor: COLORS.white3,
-            },
-            "&.Mui-focused": {
-              backgroundColor: COLORS.white2,
-              borderColor: COLORS.brown2,
-              boxShadow: `0 0 0 2px ${COLORS.brown2}`,
-            },
-          },
-          "& .MuiInputLabel-root.Mui-focused": {
-            color: COLORS.brown2,
-          },
-        }}
-            
+
+              "& .MuiFilledInput-root": {
+                backgroundColor: COLORS.white2,
+                "&:hover": {
+                  backgroundColor: COLORS.white3,
+                },
+                "&.Mui-focused": {
+                  backgroundColor: COLORS.white2,
+                  borderColor: COLORS.brown2,
+                  boxShadow: `0 0 0 2px ${COLORS.brown2}`,
+                },
+              },
+              "& .MuiInputLabel-root.Mui-focused": {
+                color: COLORS.brown2,
+              },
+            }}
           />
         </Grid>
         <Grid xs={6}>
@@ -130,23 +163,22 @@ const Step5Metrics: React.FC<AppProps> = ({
                 alignItems: "center",
                 justifyContent: "center",
               },
-              
-          "& .MuiFilledInput-root": {
-            backgroundColor: COLORS.white2,
-            "&:hover": {
-              backgroundColor: COLORS.white3,
-            },
-            "&.Mui-focused": {
-              backgroundColor: COLORS.white2,
-              borderColor: COLORS.brown2,
-              boxShadow: `0 0 0 2px ${COLORS.brown2}`,
-            },
-          },
-          "& .MuiInputLabel-root.Mui-focused": {
-            color: COLORS.brown2,
-          },
-        }}
-          
+
+              "& .MuiFilledInput-root": {
+                backgroundColor: COLORS.white2,
+                "&:hover": {
+                  backgroundColor: COLORS.white3,
+                },
+                "&.Mui-focused": {
+                  backgroundColor: COLORS.white2,
+                  borderColor: COLORS.brown2,
+                  boxShadow: `0 0 0 2px ${COLORS.brown2}`,
+                },
+              },
+              "& .MuiInputLabel-root.Mui-focused": {
+                color: COLORS.brown2,
+              },
+            }}
           />
         </Grid>
       </Grid>
@@ -216,16 +248,18 @@ const Step5Metrics: React.FC<AppProps> = ({
           mt: "auto",
         }}
       >
-        <StyledButton variant="text" onClick={onBack}>
+        <StyledBackButton variant="contained" onClick={onBack}>
           {t("dialogue.back")}
-        </StyledButton>
-        <StyledButton
-          variant="contained"
+        </StyledBackButton>
+        <StyledNextButton
+          // variant="outlined"
           onClick={onNext}
           endIcon={<ArrowForwardIcon />}
         >
-          {t("dialogue.next")}
-        </StyledButton>
+          {data.districts.length === 0
+            ? t("dialogue.skip")
+            : t("dialogue.next")}
+        </StyledNextButton>
       </Box>
     </Box>
   );

@@ -17,15 +17,9 @@ const StyledPaper = styled(Paper)`
   padding: 16px;
   background-color: ${COLORS.new_red};
   color: ${COLORS.white2};
-  border: 2px solid ${COLORS.green6};
+  border: 2px solid ${COLORS.chlorophyll};
   text-align: center;
 `;
-
-// const NotesField = styled(TextField)`
-//   & .MuiOutlinedInput-root {
-//     background-color: ${COLORS.white2};
-//   }
-// `;
 
 const AudioPaper = styled(Paper)`
   display: flex;
@@ -43,11 +37,19 @@ const Footer = styled.div`
   padding-top: 16px;
 `;
 
-const StyledButton = styled(Button)`
-  background-color: ${COLORS.primary_green};
+const StyledNextButton = styled(Button)`
+  background-color: ${COLORS.chlorophyll};
   color: ${COLORS.white2};
   &:hover {
-    background-color: ${COLORS.green6};
+    background-color: ${COLORS.chlorophyll};
+    color: ${COLORS.white2};
+    opacity: 0.7;
+  }
+  ,
+  &:focus {
+    background-color: ${COLORS.chlorophyll};
+    color: ${COLORS.brown2};
+    opacity: 0.7;
   }
 `;
 
@@ -59,24 +61,12 @@ const Step1Core: React.FC<AppProps> = ({ data, updateData, onNext }) => {
     <Box
       sx={{ display: "flex", flexDirection: "column", height: "100%", gap: 3 }}
     >
-      <Paper
-        elevation={0}
-        sx={{
-          p: { xs: 2, sm: 4 },
-          bgcolor: "info.main",
-          color: "info.contrastText",
-          border: "2px solid #93c47D",
-        }}
-      >
-
-
+      <StyledPaper elevation={0}>
         <Typography variant="h4" component="h1" gutterBottom>
           {t("dialogue.headerTitle")}
         </Typography>
-        <Typography variant="h6">
-          {t("dialogue.headerSubtitle")}
-        </Typography>
-      </Paper>
+        <Typography variant="h6">{t("dialogue.headerSubtitle")}</Typography>
+      </StyledPaper>
 
       <Box sx={{ flexGrow: 1 }}>
         <Typography variant="h6" gutterBottom>
@@ -97,7 +87,6 @@ const Step1Core: React.FC<AppProps> = ({ data, updateData, onNext }) => {
               backgroundColor: "background.paper",
             },
           }}
-
         />
 
         <AudioPaper elevation={0}>
@@ -109,13 +98,13 @@ const Step1Core: React.FC<AppProps> = ({ data, updateData, onNext }) => {
       </Box>
 
       <Footer>
-        <StyledButton
+        <StyledNextButton
           variant="contained"
           onClick={onNext}
           endIcon={<ArrowForwardIcon />}
         >
-          weiter ...
-        </StyledButton>
+          {t("dialogue.next")}
+        </StyledNextButton>
       </Footer>
     </Box>
   );
