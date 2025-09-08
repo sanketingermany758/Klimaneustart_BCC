@@ -114,7 +114,6 @@ const Step6Summary: React.FC<AppProps> = ({
   const { t } = useLanguage();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState("");
-  const [sendCopy, setSendCopy] = useState(false);
 
   const handleEdit = (stepId: StepId) => {
     console.log(`Navigating to step: ${stepId}`);
@@ -128,12 +127,8 @@ const Step6Summary: React.FC<AppProps> = ({
     setIsSubmitting(true);
     setError("");
     try {
-      const payload = { ...data, sendCopy, status: "completed" };
+      const payload = { ...data, status: "completed" };
       const result = await saveConversation(payload);
-
-      if (sendCopy) {
-      }
-
       onNext();
     } catch (e) {
       setError("Failed to submit conversation. Please try again.");
@@ -262,23 +257,6 @@ const Step6Summary: React.FC<AppProps> = ({
           {error}
         </Alert>
       )}
-
-      {data.shareContact && data.contactInfo && (
-        <Box sx={{ mt: 2, display: "flex", justifyContent: "flex-start" }}>
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={sendCopy}
-                onChange={(e) => setSendCopy(e.target.checked)}
-                name="sendCopy"
-                color="primary"
-              />
-            }
-            label={`Send a copy of this summary to ${data.contactInfo}`}
-          />
-        </Box>
-      )}
-
       <Box sx={{ display: "flex", justifyContent: "space-between", mt: 4 }}>
         <StyledBackButton variant="contained" onClick={onBack}>
           {t("dialogue.back")}
