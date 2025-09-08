@@ -231,7 +231,7 @@ const Step3Initiatives: React.FC<AppProps> = ({
         {data.districts.length > 0 &&
           ` ${t("initiatives.in")} ${data.districts.join(", ")}`}
       </Typography>
-      <Box sx={{ display: "flex", flexDirection: "column", gap: 2, mb: 4 }}>
+      <Box sx={{ display: "flex", flexDirection: "column", gap: 1, mb: 4 }}>
         {filteredInitiatives.length > 0 ? (
           filteredInitiatives.map((initiative) => {
             const isSelected = data.selectedInitiatives.includes(initiative.id);
@@ -240,7 +240,7 @@ const Step3Initiatives: React.FC<AppProps> = ({
                 key={initiative.id}
                 variant="outlined"
                 sx={{
-                  borderColor: isSelected ? COLORS.blue2 : COLORS.grey2,
+                  borderColor: isSelected ? COLORS.chlorophyll : COLORS.grey2,
                   borderWidth: 3,
                   borderRadius: 2,
                 }}
@@ -248,8 +248,10 @@ const Step3Initiatives: React.FC<AppProps> = ({
                 <Box
                   sx={{
                     display: "flex",
-                    alignItems: "stretch",
+                    // alignItems: "stretch",
                     justifyContent: "space-between",
+                    flexDirection: { xs: "column", sm: "row" },
+                    alignItems: { xs: "center", sm: "stretch" },
                   }}
                 >
                   <CardActionArea
@@ -274,12 +276,29 @@ const Step3Initiatives: React.FC<AppProps> = ({
                         setQrCodeValue(`${initiative.link}`);
                       }}
                       sx={{
-                        width: 80,
-                        height: 80,
+                        width: 100,
+                        height: 100,
                         flexShrink: 0,
+                        padding: "4px",
+                        // borderColor: COLORS.chlorophyll,
+                        color: COLORS.heading,
+                        "&:hover": {
+                          borderColor: COLORS.chlorophyll, // Change border to red on hover
+                          // backgroundColor: 'rgba(231, 0, 0, 0.04)' // Optional: for a better feedback
+                        },
                       }}
                     >
-                      {t("initiatives.qrCode")}
+                      {/* {t("initiatives.qrCode")} */}
+                      <QRCodeCanvas
+                        value={initiative.link}
+                        size={72} // A good resolution for a small, scannable thumbnail
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                        }}
+                        bgColor="transparent" // Makes the QR background transparent
+                        fgColor={COLORS.heading} // Sets the color of the QR code itself
+                      />
                     </Button>
                   </Box>
                 </Box>
