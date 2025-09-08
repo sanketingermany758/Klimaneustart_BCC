@@ -50,8 +50,8 @@ export const INITIAL_CONVERSATION_DATA: ConversationData = {
   isAnonymous: true,
   observerReflection: "",
   surprise: "",
-  numPeople: 2,
-  duration: 30,
+  numPeople: 1,
+  duration: 10,
 };
 
 export const CONTACT_INFO: ContactInfo = {
@@ -64,8 +64,8 @@ export const CONTACT_INFO: ContactInfo = {
 export const DEINE_REFLECTION: DeineReflection = {
   observerReflection: "",
   surprise: "",
-  numPeople: 2,
-  duration: 30,
+  numPeople: 1,
+  duration: 10,
 };
 
 export const BERLIN_DISTRICTS: string[] = [

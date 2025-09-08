@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   Box,
   Typography,
@@ -70,6 +70,22 @@ const Step5Metrics: React.FC<AppProps> = ({
     updateData({ participantType: type });
   };
 
+  const [numPeopleValue, setNumPeopleValue] = useState(
+    data.numPeople?.toString() || "1"
+  );
+  const [durationValue, setDurationValue] = useState(
+    data.duration?.toString() || "10"
+  );
+
+  useEffect(() => {
+    if (!data.numPeople) {
+      updateData({ numPeople: 1 });
+    }
+    if (!data.duration) {
+      updateData({ duration: 10 });
+    }
+  }, []);
+
   return (
     <Box
       sx={{ display: "flex", flexDirection: "column", height: "100%", gap: 3 }}
@@ -100,10 +116,15 @@ const Step5Metrics: React.FC<AppProps> = ({
           <TextField
             fullWidth
             type="number"
-            value={data.numPeople}
-            onChange={(e) =>
-              updateData({ numPeople: parseInt(e.target.value, 10) || 0 })
-            }
+            value={numPeopleValue}
+            onChange={(e) => {
+              const value = e.target.value;
+              // Allow the input to be empty, but don't allow non-numeric characters
+              if (/^\d*$/.test(value)) {
+                setNumPeopleValue(value); // Update the local string value
+                updateData({ numPeople: parseInt(value, 10) || 0 }); // Update the main data
+              }
+            }}
             inputProps={{
               style: {
                 textAlign: "center",
@@ -144,10 +165,14 @@ const Step5Metrics: React.FC<AppProps> = ({
           <TextField
             fullWidth
             type="number"
-            value={data.duration}
-            onChange={(e) =>
-              updateData({ duration: parseInt(e.target.value, 10) || 0 })
-            }
+            value={durationValue}
+            onChange={(e) => {
+              const value = e.target.value;
+              if (/^\d*$/.test(value)) {
+                setDurationValue(value); // Update the local string value
+                updateData({ duration: parseInt(value, 10) || 0 }); // Update the main data
+              }
+            }}
             inputProps={{
               style: {
                 textAlign: "center",
