@@ -44,17 +44,18 @@ const Container = styled.div`
 
 const StyledPaper = styled(Paper)`
   padding: 16px;
-  background-color: ${COLORS.new_red};
-  color: ${COLORS.white2};
+  background-color: ${COLORS.chlorophyll};
+  color: ${COLORS.primary_background};
   border: 2px solid ${COLORS.chlorophyll};
   text-align: center;
 `;
 
 const StyledButton = styled(Button)`
-  background-color: ${COLORS.primary_background};
-  color: ${COLORS.heading};
+  background-color: ${COLORS.blue1};
+  color: ${COLORS.primary_background};
   &:hover {
-    background-color: ${COLORS.button_background_yellow};
+    background-color: ${COLORS.blue1};
+    opacity: 0.7;
   }
 `;
 
@@ -164,9 +165,7 @@ const Step3Initiatives: React.FC<AppProps> = ({
                 variant="outlined"
                 sx={{
                   height: "100%",
-                  borderColor: isSelected
-                    ? COLORS.button_background_yellow
-                    : COLORS.grey2,
+                  borderColor: isSelected ? COLORS.chlorophyll : COLORS.grey2,
                   borderWidth: 2,
                 }}
               >
@@ -175,8 +174,11 @@ const Step3Initiatives: React.FC<AppProps> = ({
                   sx={{ p: 2, textAlign: "center", height: "100%" }}
                 >
                   <Icon
-                    sx={{ fontSize: 40, mb: 1 }}
-                    color={isSelected ? "primary" : "action"}
+                    sx={{
+                      fontSize: 40,
+                      mb: 1,
+                      color: isSelected ? COLORS.chlorophyll : "action",
+                    }}
                   />
                   <Typography variant="h6">{t(interest.nameKey)}</Typography>
                   <Typography variant="body2" color={COLORS.heading}>
@@ -200,7 +202,7 @@ const Step3Initiatives: React.FC<AppProps> = ({
           {t("dialogue.back")}
         </StyledBackButton>
         <Box>
-          <StyledButton variant="text" onClick={handleSkip} sx={{ mr: 2 }}>
+          <StyledButton variant="contained" onClick={handleSkip} sx={{ mr: 2 }}>
             {t("dialogue.skip")}
           </StyledButton>
           <StyledNextButton
