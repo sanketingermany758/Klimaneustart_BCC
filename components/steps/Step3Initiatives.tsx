@@ -316,6 +316,7 @@ const Step3Initiatives: React.FC<AppProps> = ({
           sx={{
             mt: 4,
             textAlign: "center",
+            borderColor: COLORS.chlorophyll,
           }}
         >
           <CardActionArea
