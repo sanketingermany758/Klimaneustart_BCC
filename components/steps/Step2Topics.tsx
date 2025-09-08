@@ -91,6 +91,23 @@ const Step2Topics: React.FC<AppProps> = ({
   const theme = useTheme();
   const { t } = useLanguage();
 
+  // --- START: SORTING LOGIC ---
+  // Separate the "notes" topic from the others
+  const notesTopic = TOPIC_DEFINITIONS.find((topic) => topic.type === "notes");
+  const sortableTopics = TOPIC_DEFINITIONS.filter(
+    (topic) => topic.type !== "notes"
+  );
+
+  // Sort the other topics alphabetically based on their translated name
+  sortableTopics.sort((a, b) => t(a.nameKey).localeCompare(t(b.nameKey)));
+
+  // Recombine the list with the "notes" topic at the end
+  const sortedTopicDefinitions = [
+    ...sortableTopics,
+    ...(notesTopic ? [notesTopic] : []),
+  ];
+  // --- END: SORTING LOGIC ---
+
   const handleOptionToggle = (
     topicId: string,
     subGroupId: string,
@@ -200,25 +217,27 @@ const Step2Topics: React.FC<AppProps> = ({
             </AccordionSummary> */}
             <AccordionDetails>
               <Grid container spacing={1}>
-                {sub.options.map((option) => (
-                  <Grid xs={12} sm={6} key={option.id}>
-                    <FormControlLabel
-                      control={
-                        <Checkbox
-                          checked={
-                            (data.topicDetails[topic.id] as any)?.[
-                              sub.id
-                            ]?.selectedOptions.includes(option.id) || false
-                          }
-                          onChange={() =>
-                            handleOptionToggle(topic.id, sub.id, option.id)
-                          }
-                        />
-                      }
-                      label={t(option.nameKey)}
-                    />
-                  </Grid>
-                ))}
+                {sub.options
+                  .sort((a, b) => t(a.nameKey).localeCompare(t(b.nameKey)))
+                  .map((option) => (
+                    <Grid xs={12} sm={6} key={option.id}>
+                      <FormControlLabel
+                        control={
+                          <Checkbox
+                            checked={
+                              (data.topicDetails[topic.id] as any)?.[
+                                sub.id
+                              ]?.selectedOptions.includes(option.id) || false
+                            }
+                            onChange={() =>
+                              handleOptionToggle(topic.id, sub.id, option.id)
+                            }
+                          />
+                        }
+                        label={t(option.nameKey)}
+                      />
+                    </Grid>
+                  ))}
               </Grid>
               <TextField
                 fullWidth
@@ -378,7 +397,7 @@ const Step2Topics: React.FC<AppProps> = ({
         >
           {/* Animating Container */}
           <Box sx={sidebarContainerStyles}>
-            {TOPIC_DEFINITIONS.map((topic) => {
+            {sortedTopicDefinitions.map((topic) => {
               const Icon = topic.icon;
               const isSelected = activeTopicId === topic.id;
               return (
