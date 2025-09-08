@@ -11,6 +11,7 @@ export enum StepId {
   Metrics = "metrics",
   reflectionDistrict = "reflectionDistrict",
   Summary = "summary",
+  ThankYou = "thankyou",
 }
 
 export interface Step {

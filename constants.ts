@@ -34,6 +34,7 @@ export const STEPS: Step[] = [
   { id: StepId.Metrics, title: "Observer Reflection Metrics" },
   { id: StepId.reflectionDistrict, title: "Select Reflection Districts" },
   { id: StepId.Summary, title: "Summary" },
+  { id: StepId.ThankYou, title: "Thank you." },
 ];
 
 export const INITIAL_CONVERSATION_DATA: ConversationData = {

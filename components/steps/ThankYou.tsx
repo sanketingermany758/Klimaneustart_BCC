@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Typography, Button, Paper } from "@mui/material";
 import { AppProps } from "../../types";
-import {COLORS} from "../../constants"; 
+import { COLORS } from "../../constants";
 import { useLanguage } from "../LanguageContext";
 
 const ThankYou: React.FC<AppProps> = ({ onRestart, data }) => {
@@ -30,8 +30,8 @@ const ThankYou: React.FC<AppProps> = ({ onRestart, data }) => {
       <Paper
         elevation={0}
         sx={{
-          bgcolor: COLORS.new_green,
-          color: COLORS.brown2,
+          bgcolor: COLORS.chlorophyll,
+          color: COLORS.primary_background,
           p: { xs: 3, sm: 4 },
           width: "100%",
           border: "2px solid #18181B", // Dark border as in sketch
@@ -67,7 +67,8 @@ const ThankYou: React.FC<AppProps> = ({ onRestart, data }) => {
           </Typography>
         </Paper>
       )}
-      <Box sx={{ flexGrow: 1 }} /> {/* Spacer to push button to the bottom */}
+      {/* <Box sx={{ flexGrow: 1 }} /> */}
+      {/* Spacer to push button to the bottom */}
       {/* Deep Dive Button */}
       <Button
         variant="outlined"
@@ -75,7 +76,7 @@ const ThankYou: React.FC<AppProps> = ({ onRestart, data }) => {
         size="large"
         sx={{
           width: "100%",
-          maxWidth: { xs: "100%", sm: 400 },
+          // maxWidth: { xs: "100%", sm: 400 },
           mb: 2,
           border: `2px solid ${COLORS.new_red}`,
           color: `${COLORS.red2}`,
@@ -88,6 +89,7 @@ const ThankYou: React.FC<AppProps> = ({ onRestart, data }) => {
       >
         Deep Dive in Initiative
       </Button>
+
       <Button
         onClick={onRestart}
         variant="contained"
@@ -97,8 +99,8 @@ const ThankYou: React.FC<AppProps> = ({ onRestart, data }) => {
           width: "100%",
           maxWidth: { xs: "100%", sm: 400 },
           border: "1.5px solid #18181B",
-          backgroundColor: COLORS.new_green,
-          color: COLORS.brown2,
+          backgroundColor: COLORS.chlorophyll,
+          color: COLORS.primary_background,
         }}
       >
         {t("thankYou.nextDialogue")}

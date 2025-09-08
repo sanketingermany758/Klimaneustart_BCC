@@ -25,8 +25,8 @@ const ConversationSchema = new mongoose.Schema(
         shareContact: { type: Boolean, default: false },
         observerReflection: { type: String, default: '' },
         surprise: { type: String, default: '' },
-        numPeople: { type: Number, default: 0 },
-        duration: { type: Number, default: 0 },
+        numPeople: { type: Number, default: 1 },
+        duration: { type: Number, default: 10 },
         location: { type: String },
 
         // Reference to separate PII document (GDPR: data minimization and separation)

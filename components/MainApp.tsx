@@ -97,10 +97,9 @@ const MainApp: React.FC = () => {
         return <Step5District {...commonProps} />;
       case StepId.Summary:
         return <Step6Summary {...commonProps} onNext={handleNext} />;
+      case StepId.ThankYou:
+        return <ThankYou {...commonProps} />;
       default:
-        if (currentStep >= STEPS.length) {
-          return <ThankYou {...commonProps} />;
-        }
         return <Step0Welcome onNext={handleNext} />;
     }
   };

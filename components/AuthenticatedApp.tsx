@@ -29,7 +29,10 @@ const AuthenticatedApp: React.FC = () => {
         {view === "dialogue" ? <MainApp /> : <AnalyticsDashboard />}
       </Container>
       {shouldShowBottomNavigationBar && (
-        <BottomNavigationBar currentView={view} onTabChange={handleViewChange} />
+        <BottomNavigationBar
+          currentView={view}
+          onTabChange={handleViewChange}
+        />
       )}
     </Box>
   );

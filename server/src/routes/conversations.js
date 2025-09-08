@@ -23,8 +23,8 @@ const conversationSchema = Joi.object({
     isAnonymous: Joi.boolean().default(true),
     observerReflection: Joi.string().allow(''),
     surprise: Joi.string().allow(''),
-    numPeople: Joi.number().integer().min(0).default(0),
-    duration: Joi.number().integer().min(0).default(0),
+    numPeople: Joi.number().integer().min(0).default(1),
+    duration: Joi.number().integer().min(0).default(10),
     location: Joi.string().allow(''),
 
     // optional richer PII fields if sent by frontend
