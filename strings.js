@@ -551,8 +551,8 @@ export default {
             "lastName": "Last Name",
             "telephone": "Telephone",
             "stayAnonymous": "Stay Anonymous",
-            "privacyProtected": "Your privacy is protected. Dialogue data will only be stored with your explicit consent.",
-            "confidentialInfo": "Your information remains confidential. Your contact details will only be used to keep in touch and inform you about local initiatives that may be of interest to you.",
+            "privacyProtected": "The location, duration and number of participants will be saved, all further information only with express consent. (GDPR compliant)",
+            "confidentialInfo": "With a copy of your response, you will also receive information about initiatives that may be of interest to you.",
             "organizationQRCode": "Organization QR Code"
         },
         "reflection": {
