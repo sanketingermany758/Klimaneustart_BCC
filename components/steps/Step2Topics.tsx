@@ -195,9 +195,9 @@ const Step2Topics: React.FC<AppProps> = ({
               marginBottom: 2,
             }}
           >
-            <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+            {/* <AccordionSummary expandIcon={<ExpandMoreIcon />}>
               <Typography variant="h6">{t(sub.nameKey)}</Typography>
-            </AccordionSummary>
+            </AccordionSummary> */}
             <AccordionDetails>
               <Grid container spacing={1}>
                 {sub.options.map((option) => (
