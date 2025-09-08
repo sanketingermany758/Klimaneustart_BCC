@@ -8,6 +8,7 @@ import {
   FormGroup,
   FormControlLabel,
   Checkbox,
+  Chip,
 } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import { AppProps } from "../../types";
@@ -103,9 +104,7 @@ const Step5Metrics: React.FC<AppProps> = ({
         <Typography variant="h4" component="h1">
           {t("metrics.dialogue")}
         </Typography>
-        <Typography variant="h6">
-          {t("metrics.generalInformation")} Infos
-        </Typography>
+        <Typography variant="h6">{t("metrics.generalInformation")}</Typography>
       </Paper>
 
       <Grid container spacing={2}>
@@ -240,30 +239,28 @@ const Step5Metrics: React.FC<AppProps> = ({
         </FormGroup>
       </Paper>
 
-      <TextField
-        fullWidth
-        label={t("metrics.location") + " " + t("common.soon")}
-        value={data.location || ""}
-        onChange={(e) => updateData({ location: e.target.value })}
-        variant="filled"
-        disabled
+      <Paper
+        variant="outlined"
         sx={{
-          "& .MuiFilledInput-root": {
-            backgroundColor: COLORS.white2,
-            "&:hover": {
-              backgroundColor: COLORS.white3,
-            },
-            "&.Mui-focused": {
-              backgroundColor: COLORS.white2,
-              borderColor: COLORS.brown2,
-              boxShadow: `0 0 0 2px ${COLORS.brown2}`,
-            },
-          },
-          "& .MuiInputLabel-root.Mui-focused": {
-            color: COLORS.brown2,
-          },
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          p: 2,
+          borderRadius: 2,
         }}
-      />
+      >
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            gap: 1.5,
+            color: "text.secondary",
+          }}
+        >
+          <Typography fontWeight="500">{t("metrics.location")}</Typography>
+        </Box>
+        <Chip label={t("common.soon")} variant="outlined" />
+      </Paper>
 
       <Box
         sx={{
@@ -281,9 +278,7 @@ const Step5Metrics: React.FC<AppProps> = ({
           onClick={onNext}
           endIcon={<ArrowForwardIcon />}
         >
-          {data.districts.length === 0
-            ? t("dialogue.skip")
-            : t("dialogue.next")}
+          {t("dialogue.next")}
         </StyledNextButton>
       </Box>
     </Box>

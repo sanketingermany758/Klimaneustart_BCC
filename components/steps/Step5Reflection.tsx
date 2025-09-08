@@ -151,9 +151,7 @@ const Step5Reflection: React.FC<AppProps> = ({
           onClick={onNext}
           endIcon={<ArrowForwardIcon />}
         >
-          {data.districts.length === 0
-            ? t("dialogue.skip")
-            : t("dialogue.next")}
+          {t("dialogue.next")}
         </StyledNextButton>
       </Box>
     </Box>
